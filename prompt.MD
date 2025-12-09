@@ -33,3 +33,5 @@ Create a data class for "desired_flavor". It should contains values of the follo
 酒香发酵型(Winey & Fermented),
 烟熏木质型(Earthy & Spicy). 
 For the tests in @test_api.py, randomly pick one falvor as input. 
+
+-------------

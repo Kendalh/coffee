@@ -1,0 +1,154 @@
+import json
+import pandas as pd
+import matplotlib.pyplot as plt
+from pathlib import Path
+
+def parse_alog_file(file_path):
+    """Parse Artisan log file (JSON format) and extract roasting data."""
+    try:
+        # Read the file content
+        with open(file_path, 'r', encoding='utf-8') as f:
+            content = f.read()
+        
+        # Parse JSON
+        data = json.loads(content)
+        
+        # Extract roast metadata
+        roast_info = data.get('roast', {})
+        
+        # Create DataFrame from time series data
+        time_series = data.get('data', {})
+        
+        # Check if data is available
+        if not time_series:
+            raise ValueError("No time series data found in the file")
+        
+        # Create DataFrame
+        df = pd.DataFrame(time_series)
+        
+        # Add metadata as columns
+        df['roaster'] = roast_info.get('roaster', 'Unknown')
+        df['coffee'] = roast_info.get('title', 'Unknown Coffee')
+        df['weight'] = roast_info.get('weight', 0)
+        df['weightunit'] = roast_info.get('weightunit', 'g')
+        
+        # Extract events
+        events = data.get('events', {})
+        
+        return df, roast_info, events, data.get('annotations', [])
+        
+    except json.JSONDecodeError as e:
+        print(f"Error parsing JSON: {e}")
+        raise
+    except Exception as e:
+        print(f"Error reading file: {e}")
+        raise
+
+def plot_roast_profile(df, roast_info, events, annotations):
+    """Plot roast profile with events and annotations."""
+    fig, ax1 = plt.subplots(figsize=(12, 8))
+    
+    # Plot temperature curves
+    ax1.plot(df['time'], df['ET'], label='ET (Environment Temp)', color='red', linewidth=2)
+    ax1.plot(df['time'], df['BT'], label='BT (Bean Temp)', color='blue', linewidth=2)
+    ax1.set_ylabel('Temperature (°C)', color='black')
+    ax1.tick_params(axis='y', labelcolor='black')
+    
+    # Create a second y-axis for RoR
+    ax2 = ax1.twinx()
+    
+    # Plot rate of rise (RoR) - approximated from BT
+    if 'BT' in df.columns and 'time' in df.columns:
+        df['RoR'] = df['BT'].diff() / (df['time'].diff() / 60)  # RoR in °C/min
+        ax2.plot(df['time'][1:], df['RoR'][1:], label='Rate of Rise', color='green', linewidth=2)
+        ax2.set_ylabel('RoR (°C/min)', color='green')
+        ax2.tick_params(axis='y', labelcolor='green')
+    
+    # Set title and grid
+    ax1.set_title(f"Roast Profile: {roast_info.get('title', 'Unknown Coffee')}")
+    ax1.grid(True, alpha=0.3)
+    ax1.set_xlabel('Time (seconds)')
+    
+    # Add event markers if available
+    for event_name, event_time in events.items():
+        if event_time > 0:  # Only plot events with valid time
+            ax1.axvline(x=event_time, color='gray', linestyle='--', alpha=0.5)
+            ax1.text(event_time, ax1.get_ylim()[1] * 0.95, event_name, 
+                    rotation=90, verticalalignment='top', fontsize=8)
+    
+    # Add annotations
+    for ann in annotations:
+        t = ann.get('t', 0)
+        text = ann.get('text', '')
+        if t > 0:
+            ax1.annotate(text, xy=(t, df.loc[df['time'] == t, 'BT'].values[0] if not df[df['time'] == t].empty else ax1.get_ylim()[0]),
+                        xytext=(t, ax1.get_ylim()[1] * 0.85),
+                        arrowprops=dict(arrowstyle='->', color='green'),
+                        fontsize=9, ha='center')
+    
+    # Combine legends from both axes
+    lines1, labels1 = ax1.get_legend_handles_labels()
+    lines2, labels2 = ax2.get_legend_handles_labels()
+    ax1.legend(lines1 + lines2, labels1 + labels2, loc='upper left')
+    
+    plt.tight_layout()
+    return fig
+
+def export_summary(df, roast_info, events, output_path):
+    """Export roast summary to CSV."""
+    summary = {
+        'Coffee': roast_info.get('title', 'Unknown'),
+        'Roaster': roast_info.get('roaster', 'Unknown'),
+        'Roast Date': roast_info.get('date', 'Unknown'),
+        'Weight': f"{roast_info.get('weight', 0)} {roast_info.get('weightunit', 'g')}",
+        'Start Temp': f"{roast_info.get('starttemperature', 0)}°C",
+        'End Temp': f"{roast_info.get('endtemperature', 0)}°C",
+        'Total Time': f"{df['time'].max() / 60:.1f} min",
+        'Development Time': f"{(df['time'].max() - events.get('FCs', 0)) / 60:.1f} min" if events.get('FCs', 0) > 0 else "N/A"
+    }
+    
+    summary_df = pd.DataFrame([summary])
+    summary_df.to_csv(output_path, index=False)
+    print(f"Summary exported to {output_path}")
+    
+    return summary_df
+
+def main():
+    # File path (update this to your actual file path)
+    file_path = "test.alog"
+    
+    try:
+        # Parse the file
+        df, roast_info, events, annotations = parse_alog_file(file_path)
+        
+        print("=" * 50)
+        print(f"Successfully parsed roast data")
+        print(f"Coffee: {roast_info.get('title', 'Unknown')}")
+        print(f"Roaster: {roast_info.get('roaster', 'Unknown')}")
+        print(f"Roast Date: {roast_info.get('date', 'Unknown')}")
+        print(f"Data points: {len(df)}")
+        print("=" * 50)
+        
+        # Display first few rows
+        print("\nFirst 5 rows of data:")
+        print(df.head())
+        
+        # Plot the roast profile
+        fig = plot_roast_profile(df, roast_info, events, annotations)
+        plt.show()
+        
+        # Export summary
+        # output_csv = Path(file_path).stem + "_summary.csv"
+        # summary_df = export_summary(df, roast_info, events, output_csv)
+        
+        # Print summary
+        # print("\nRoast Summary:")
+        # print(summary_df.to_string(index=False))
+        
+    except FileNotFoundError:
+        print(f"Error: File '{file_path}' not found.")
+    except Exception as e:
+        print(f"Error: {e}")
+
+if __name__ == "__main__":
+    main()
