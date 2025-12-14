@@ -9,7 +9,7 @@ based on the requirements in prompt.MD.
 The PDF files should be named in the format <Brand>_<YYYYMM>.pdf
 Two CSV files are generated per PDF:
 1. For beans in "常用生豆报价单" section
-2. For beans in "精品生豆" section
+2. For beans in "精品生豆报价单" section
 
 Features extracted include:
 咖啡豆名, 风味, 产区, 品种, 等级, 含水量, 处理法, 密度值, 海拔, 规格, 产季, 每公斤价格, 每5公斤价格, 整包价格
@@ -94,11 +94,11 @@ def parse_pdf_with_llm(pdf_text: str, brand: str, date: str) -> Dict[str, List[L
     }
     """
     
-    # User prompt with the PDF content
+    # User prompt with the PDF content - process the entire text
     user_prompt = f"""Parse the following coffee bean quotation PDF from {brand} dated {date}.
     
     PDF Content:
-    {pdf_text[:4000]}  # Limiting to first 4000 chars to avoid token limits
+    {pdf_text}
     
     Extract the coffee bean information from both "常用生豆报价单" and "精品生豆" sections.
     
@@ -112,7 +112,7 @@ def parse_pdf_with_llm(pdf_text: str, brand: str, date: str) -> Dict[str, List[L
     client = OpenAI(
         api_key=os.getenv("DASHSCOPE_API_KEY", "sk-712886a429ba4813b5d8643ad8070219"),
         base_url="https://dashscope.aliyuncs.com/compatible-mode/v1",
-        timeout=120.0
+        timeout=300.0
     )
     
     try:
@@ -123,7 +123,7 @@ def parse_pdf_with_llm(pdf_text: str, brand: str, date: str) -> Dict[str, List[L
                 {"role": "user", "content": user_prompt},
             ],
             response_format={"type": "json_object"},
-            timeout=120.0
+            timeout=300.0
         )
         
         # Parse and return the response
@@ -188,7 +188,7 @@ def process_pdf_file(pdf_path: str) -> bool:
             return False
             
         # Parse with LLM
-        print(f"Parsing content with LLM...")
+        print(f"Parsing content with LLM... PDF size: {len(pdf_text)}")
         parsed_data = parse_pdf_with_llm(pdf_text, brand, date)
         
         # Generate CSV filenames
