@@ -74,7 +74,7 @@ def parse_pdf_with_llm(pdf_text: str, brand: str, date: str) -> Dict[str, List[L
     
     The document contains two sections:
     1. "常用生豆报价单" (Common Green Bean Quotations)
-    2. "精品生豆" (Premium Green Bean Quotations)
+    2. "精品生豆报价单" (Premium Green Bean Quotations)
     
     For each coffee bean entry in both sections, extract the following fields:
     咖啡豆名 (Coffee Bean Name), 风味 (Flavor), 产区 (Origin), 品种 (Variety), 等级 (Grade), 
@@ -112,7 +112,7 @@ def parse_pdf_with_llm(pdf_text: str, brand: str, date: str) -> Dict[str, List[L
     client = OpenAI(
         api_key=os.getenv("DASHSCOPE_API_KEY", "sk-712886a429ba4813b5d8643ad8070219"),
         base_url="https://dashscope.aliyuncs.com/compatible-mode/v1",
-        timeout=60.0
+        timeout=120.0
     )
     
     try:
@@ -123,7 +123,7 @@ def parse_pdf_with_llm(pdf_text: str, brand: str, date: str) -> Dict[str, List[L
                 {"role": "user", "content": user_prompt},
             ],
             response_format={"type": "json_object"},
-            timeout=60.0
+            timeout=120.0
         )
         
         # Parse and return the response
