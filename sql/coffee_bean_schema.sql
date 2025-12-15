@@ -1,0 +1,20 @@
+CREATE TABLE IF NOT EXISTS coffee_bean (
+    name TEXT,
+    type TEXT,
+    country TEXT,
+    flavor_profile TEXT,
+    origin TEXT,
+    harvest_season INTEGER,
+    code TEXT,
+    price_per_kg REAL,
+    price_per_pkg REAL,
+    grade TEXT,
+    altitude TEXT,
+    density TEXT,
+    processing_method TEXT,
+    variety TEXT,
+    provider TEXT,
+    data_year INTEGER,
+    data_month INTEGER,
+    PRIMARY KEY (data_year, data_month, name)
+);
