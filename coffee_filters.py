@@ -9,8 +9,8 @@ from typing import Set
 
 class CountryFilter(Enum):
     """Enumeration of coffee bean countries."""
-    BRAZIL = "Brazil"
-    COLOMBIA = "Colombia"
+    BRAZIL = "巴西"
+    COLOMBIA = "哥伦比亚"
     ETHIOPIA = "埃塞俄比亚"  # Ethiopia
     GUATEMALA = "危地马拉"  # Guatemala
     KENYA = "肯尼亚"  # Kenya
@@ -26,7 +26,7 @@ class CountryFilter(Enum):
     UGANDA = "乌干达"  # Uganda
     EL_SALVADOR = "萨尔瓦多"  # El Salvador
     JAMAICA = "牙买加"  # Jamaica
-    CHINA_YUNNAN = "云南"  # Yunnan, China
+    CHINA_YUNNAN = "中国"  # Yunnan, China
     LAOS = "老挝"  # Laos
     PAPUA_NEW_GUINEA = "巴布亚新几内亚"  # Papua New Guinea
     VIETNAM = "越南"  # Vietnam
@@ -44,55 +44,6 @@ class TypeFilter(Enum):
     PREMIUM = "premium"
 
 
-class VarietyFilter(Enum):
-    """Enumeration of popular coffee bean varieties."""
-    # Bourbon varieties
-    BOURBON = "Bourbon"
-    YELLOW_BOURBON = "Yellow Bourbon"
-    ORANGE_BOURBON = "Orange Bourbon"
-    RED_BOURBON = "Red Bourbon"
-    PINK_BOURBON = "Pink Bourbon"
-    
-    # Caturra and related
-    CATURRA = "Caturra"
-    YELLOW_CATURRA = "Yellow Caturra"
-    
-    # Typica varieties
-    TYPICA = "Typica"
-    JAVA = "Java"
-    
-    # Geisha/Gesha varieties
-    GEISHA = "Geisha"
-    GESHA = "Gesha"
-    GEISHA_1931 = "Geisha1931"
-    GORI_GESHA = "Gori Gesha"
-    
-    # SL varieties
-    SL28 = "SL28"
-    SL34 = "SL34"
-    
-    # Heirloom (common for Ethiopian coffees)
-    HEIRLOOM = "Heirloom"
-    
-    # Colombian varieties
-    CASTILLO = "Castillo"
-    CATORANO = "Catorano"
-    
-    # Processing specific
-    CATIMOR = "Catimor"
-    MANDING = "Manding"
-    
-    # Other notable varieties
-    PACAMARA = "Pacamara"
-    MARACATU = "Maracatu"
-    SIDRA = "Sidra"
-    VILLA_SARCHI = "Villa Sarchi"
-    CARMELITO = "Carmelito"
-    
-    # Blue Mountain
-    BLUE_MOUNTAIN = "BLUE MOUNTAIN"
-
-
 def get_all_countries() -> Set[str]:
     """Return all country values as a set."""
     return {country.value for country in CountryFilter}
@@ -106,11 +57,6 @@ def get_all_providers() -> Set[str]:
 def get_all_types() -> Set[str]:
     """Return all type values as a set."""
     return {type_filter.value for type_filter in TypeFilter}
-
-
-def get_all_varieties() -> Set[str]:
-    """Return all variety values as a set."""
-    return {variety.value for variety in VarietyFilter}
 
 
 if __name__ == "__main__":
@@ -127,6 +73,3 @@ if __name__ == "__main__":
     for type_filter in TypeFilter:
         print(f"  {type_filter.name}: {type_filter.value}")
     
-    print("\nAvailable Varieties:")
-    for variety in VarietyFilter:
-        print(f"  {variety.name}: {variety.value}")

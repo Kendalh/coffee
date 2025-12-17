@@ -44,3 +44,31 @@ Parsing the PDF raw coffee bean quotations and generate CSV format coffee bean f
 1) If there is any content contains ',', which is the CSV file delimiter, replace the ',' to ' ' (space)
 2) For the 咖啡豆名 field, remove all the spaces in the name
 3) If there are fields you can't extract, simply leave them blank (eg. there could be beans that don't have a per-KG price or per-5KG-price)
+
+----------------
+Write a program csv_merger.py, that take a list of coffee bean feature JSON and merge them into a CSV format file. Detailed requirements are as follows:
+1) the program should accept a wildcast file list pattern and process the files that meet that pattern (eg. silver_data/金棕_202505_* will take all the JSON files meet that pattern), and generate a CSV with the same prefix (eg. 金粽_202505_all.csv)
+2) it should extract whether the it's common or premium bean based on the input file name (pattern: <provider>_<YYYYMM>_<type>_<chunk>.json). Extract as a new field "type" and value it either "common" or "premium".
+3) the JSON parser should take all the "coffee_beans" array and take each JSON object as a line of the CSV file. Include all the existing fields plus the "type" filed. 
+4) For the name, flavor_profile, origin fields. Replace all the "," or "，" (Chinese comma character), "、" to a space 
+5) For harvest_season, only retain the year as YYYY format (it should be a number)
+6) Introduce a new filed "country", parse the country value from the name (it should be the first space delimetered)
+7) Remove the lines if name is empty/None
+
+---------------------
+Now I need to populate the coffee bean CSV data files into a relational database. Detailed steps as follows: 
+1) create a local SQLlite DB
+2) provid DDLs to create table/schemas (in the sql folder) for 
+a) the coffee_bean table that should take all the CSV fields, additionally add "provider", "data_year" and "data_month" field. These fileds should be determined from the CSV file name (pattern: <provider>_<YYYYMM>.csv)
+b) maintain a latest data table for each provider (eg. if the latest data file for 金粽 is 202512, the table should keep the provider name, data year and data month info)
+c) create a python program sqlite_populator.py, to take a coffee bean csv file and populate these data into the coffee_bean table; update the latest data table if needed. 
+
+----------------
+Need a couple changes
+1) The coffee_bean_schema should not have incremental ID as the primary key. Make the (data_year, data_month, name) as the primary key (I need to insert override entries to repopulate data)
+2) The latest_data should also not have the incremental ID as the primary key. Make the provider as the primary key. 
+3) harvest_season field should be INTEGER (make code changes as needed)
+4) the @sqlite_populator.py should take a few command line options to 
+ a) drop all the tables
+ b) re-create all 
+ c) accept a one or more .csv data file and populate (insert override) data

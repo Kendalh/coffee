@@ -96,7 +96,55 @@ python3 sqlite_populator.py --drop
 
 ### Endpoints
 
-- `GET /` - Returns "Hello Python Web"
+- `GET /` - Returns the main page with coffee roast recommendation form
+- `POST /roast-recommendation` - Get roast recommendations based on coffee bean features
+- `GET /api/coffee-beans` - Get all coffee beans with pagination support
+- `POST /api/coffee-beans/search` - Search coffee beans using a custom SQL query with pagination
+- `GET /api/coffee-beans/<name>/<year>/<month>` - Get a specific coffee bean by name and date
+
+### Coffee Query API Details
+
+#### Get All Coffee Beans
+```
+GET /api/coffee-beans?page=1&page_size=10
+```
+Parameters:
+- `page` (optional): Page number (default: 1)
+- `page_size` (optional): Items per page - 10, 50, or 100 (default: 10)
+
+Returns paginated list of all coffee beans sorted by date (newest first).
+
+#### Search Coffee Beans
+```
+POST /api/coffee-beans/search
+```
+Body (JSON):
+```json
+{
+  "query": "SELECT * FROM coffee_bean WHERE country = ?",
+  "params": ["BRAZIL"],
+  "page": 1,
+  "page_size": 10
+}
+```
+Parameters:
+- `query`: SQL SELECT query to execute
+- `params` (optional): Parameters for the SQL query
+- `page` (optional): Page number (default: 1)
+- `page_size` (optional): Items per page - 10, 50, or 100 (default: 10)
+
+Returns paginated search results.
+
+#### Get Specific Coffee Bean
+```
+GET /api/coffee-beans/<name>/<year>/<month>
+```
+Parameters:
+- `name`: URL-encoded coffee bean name
+- `year`: Data year
+- `month`: Data month
+
+Returns details of a specific coffee bean.
 
 ### How to Run
 

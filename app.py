@@ -5,6 +5,12 @@ import csv
 import random
 import os
 
+# Import the coffee service
+from coffee_service import CoffeeQueryService
+
+# Import the coffee filters
+from coffee_filters import CountryFilter, ProviderFilter, TypeFilter, get_all_countries, get_all_providers, get_all_types
+
 # Configure logging
 logging.basicConfig(
     level=logging.INFO,
@@ -16,6 +22,9 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 app = Flask(__name__, template_folder='templates')
+
+# Initialize the coffee query service
+coffee_service = CoffeeQueryService()
 
 def load_random_coffee():
     """Load a random coffee from the CSV file"""
@@ -123,6 +132,109 @@ def roast_recommendation():
     except Exception as e:
         logger.error("Error processing request: %s", str(e))
         return jsonify({"error": "Internal server error"}), 500
+
+# Coffee query endpoints
+@app.route('/api/coffee-beans', methods=['GET'])
+def get_coffee_beans():
+    """Get all coffee beans with pagination support and optional filters."""
+    try:
+        page = int(request.args.get('page', 1))
+        page_size = int(request.args.get('page_size', 10))
+        country = request.args.get('country')
+        bean_type = request.args.get('type')
+        
+        # Validate page size
+        if page_size not in [10, 50, 100]:
+            page_size = 10
+            
+        result = coffee_service.get_latest_coffee_beans(
+            provider='金粽',
+            country=country,
+            bean_type=bean_type,
+            page=page, 
+            page_size=page_size
+        )
+        return jsonify(result)
+        
+    except Exception as e:
+        logger.error("Error processing request: %s", str(e))
+        return jsonify({"error": "Internal server error"}), 500
+
+@app.route('/api/coffee-beans/search', methods=['POST'])
+def search_coffee_beans():
+    """Search coffee beans using a custom SQL query."""
+    try:
+        data = request.get_json()
+        if not data:
+            return jsonify({"error": "No JSON data provided"}), 400
+            
+        sql_query = data.get('query')
+        params = data.get('params', [])
+        page = data.get('page', 1)
+        page_size = data.get('page_size', 10)
+        
+        if not sql_query:
+            return jsonify({"error": "SQL query is required"}), 400
+            
+        # Validate page size
+        if page_size not in [10, 50, 100]:
+            page_size = 10
+            
+        # Security check: ensure query is selecting from coffee_bean table
+        if not sql_query.lower().strip().startswith('select'):
+            return jsonify({"error": "Only SELECT queries are allowed"}), 400
+            
+        result = coffee_service.query_coffee_beans(
+            sql_query=sql_query,
+            params=tuple(params),
+            page=page,
+            page_size=page_size
+        )
+        return jsonify(result)
+        
+    except Exception as e:
+        logger.error("Error processing request: %s", str(e))
+        return jsonify({"error": "Internal server error"}), 500
+
+@app.route('/api/coffee-beans/<name>/<int:year>/<int:month>', methods=['GET'])
+def get_coffee_bean(name, year, month):
+    """Get a specific coffee bean by name and date."""
+    try:
+        coffee_bean = coffee_service.get_coffee_bean_by_name(name, year, month)
+        if coffee_bean:
+            return jsonify(coffee_bean.to_dict())
+        else:
+            return jsonify({"error": "Coffee bean not found"}), 404
+            
+    except Exception as e:
+        logger.error("Error processing request: %s", str(e))
+        return jsonify({"error": "Internal server error"}), 500
+
+
+# Filter endpoints
+@app.route('/api/filters/countries', methods=['GET'])
+def get_countries():
+    """Get all available countries for filtering."""
+    try:
+        countries = get_all_countries()
+        # Return as a sorted list
+        return jsonify(sorted(list(countries)))
+    except Exception as e:
+        logger.error("Error processing request: %s", str(e))
+        return jsonify({"error": "Internal server error"}), 500
+
+
+@app.route('/api/filters/providers', methods=['GET'])
+def get_providers():
+    """Get all available providers for filtering."""
+    try:
+        providers = get_all_providers()
+        # Return as a sorted list
+        return jsonify(sorted(list(providers)))
+    except Exception as e:
+        logger.error("Error processing request: %s", str(e))
+        return jsonify({"error": "Internal server error"}), 500
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5002, debug=False, threaded=True)

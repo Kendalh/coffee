@@ -51,7 +51,7 @@ def process_field_value(field_name: str, value: str) -> str:
     # Handle fields that need comma replacement
     if field_name in ['name', 'flavor_profile', 'origin', 'variety']:
         # Replace commas and Chinese punctuation with spaces
-        value = re.sub(r'[,，、]+', ' ', value)
+        value = re.sub(r'[,，、.。]+', ' ', value)
         # Clean up extra spaces
         value = re.sub(r'\s+', ' ', value).strip()
     
@@ -68,20 +68,6 @@ def process_field_value(field_name: str, value: str) -> str:
         return ''
     
     return value
-
-
-def extract_country_from_name(name: str) -> str:
-    """
-    Extract country from the name field (first space-delimited part)
-    """
-    if not name:
-        return ''
-    
-    # Split by space and take the first part
-    parts = name.split(' ')
-    if parts:
-        return parts[0]
-    return ''
 
 
 def process_json_file(file_path: str) -> List[Dict[str, Any]]:
@@ -116,7 +102,7 @@ def process_json_file(file_path: str) -> List[Dict[str, Any]]:
                     processed_bean['type'] = bean_type
                     
                     # Add country field
-                    processed_bean['country'] = extract_country_from_name(processed_bean.get('name', ''))
+                    processed_bean['country'] = processed_bean.get('country', '')
                     
                     # Extract year from harvest_season
                     if 'harvest_season' in processed_bean:
