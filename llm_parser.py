@@ -1,6 +1,7 @@
 import json
 import base64
 import requests
+from requests.exceptions import Timeout
 from typing import List, Dict, Any
 import time
 import PyPDF2
@@ -174,7 +175,7 @@ class CoffeeBeanPDFAnalyzer:
             ],
             "stream": streaming,
             "temperature": temperature,  # Lower temperature for less creativity
-            "max_tokens": 8000  # DeepSeek's limit is 8192
+            "max_tokens": 8100  # DeepSeek's limit is 8192
         }
         
         return headers, payload, pdf_page_count
@@ -237,7 +238,8 @@ class CoffeeBeanPDFAnalyzer:
                 self.api_url,
                 headers=headers,
                 json=payload,
-                stream=True
+                stream=True,
+                timeout=600  # 10 minute timeout
             )
             
             if response.status_code != 200:
@@ -276,7 +278,11 @@ class CoffeeBeanPDFAnalyzer:
             # 处理响应内容
             return self._process_response_content(full_response, pdf_path)
                 
+        except Timeout:
+            print("请求超时 (10分钟). 跳过文件处理")
+            return []
         except Exception as e:
+            print(f"分析过程中出现错误: {e}")
             return []
     
     def analyze_pdf(self, pdf_path: str, temperature: float = 0.1) -> List[Dict[str, Any]]:
@@ -293,7 +299,8 @@ class CoffeeBeanPDFAnalyzer:
             response = requests.post(
                 self.api_url,
                 headers=headers,
-                json=payload
+                json=payload,
+                timeout=600  # 10 minute timeout
             )
             
             if response.status_code != 200:
@@ -312,6 +319,9 @@ class CoffeeBeanPDFAnalyzer:
                 print("响应中没有找到有效内容")
                 return []
                 
+        except Timeout:
+            print("请求超时 (10分钟). 跳过文件处理")
+            return []
         except Exception as e:
             print(f"分析过程中出现错误: {e}")
             return []

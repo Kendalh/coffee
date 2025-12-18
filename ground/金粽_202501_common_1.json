@@ -12,7 +12,7 @@
         "origin": "Sumatra",
         "grade": "G1",
         "humidity": "13.5%",
-        "altitude": "1300-1600M",
+        "altitude": "1300 ‒ 1600M",
         "density": "860g/l",
         "processing_method": "湿刨法",
         "harvest_season": "2024年",
@@ -28,7 +28,7 @@
         "origin": "苏门答腊",
         "grade": "G1",
         "humidity": "13.7%",
-        "altitude": "1300-1700M",
+        "altitude": "1300 ‒ 1700M",
         "density": "873g/l",
         "processing_method": "湿刨法",
         "harvest_season": "2024年",
@@ -44,7 +44,7 @@
         "origin": "伽优山",
         "grade": "G1 TP/三次手选",
         "humidity": "12.4%",
-        "altitude": "1400-1600M",
+        "altitude": "1400 ‒ 1600M",
         "density": "849g/l",
         "processing_method": "湿刨法",
         "harvest_season": "2024年",
@@ -65,7 +65,7 @@
         "origin": "india",
         "grade": "AA",
         "humidity": "11.3%",
-        "altitude": "1200-1350M",
+        "altitude": "1200 ‒ 1350M",
         "density": "851g/l",
         "processing_method": "水洗处理",
         "harvest_season": "2023年",
@@ -81,7 +81,7 @@
         "origin": "Dat Lat",
         "grade": "G1",
         "humidity": "11.3%",
-        "altitude": "800-1100M",
+        "altitude": "800 ‒ 1100M",
         "density": "864g/l",
         "processing_method": "日晒抛光",
         "harvest_season": "2024年",
@@ -118,12 +118,7 @@
         "processing_method": "水洗处理",
         "harvest_season": "2024年",
         "variety": "阿拉比卡"
-      }
-    ]
-  },
-  {
-    "page": 3,
-    "coffee_beans": [
+      },
       {
         "code": "C-1",
         "name": "云南AAA 水洗 （2025新产季）",
@@ -139,7 +134,12 @@
         "processing_method": "水洗处理",
         "harvest_season": "2024/2025年",
         "variety": "卡蒂姆"
-      },
+      }
+    ]
+  },
+  {
+    "page": 3,
+    "coffee_beans": [
       {
         "code": "C-2",
         "name": "云南普洱 日晒 精品",
@@ -170,20 +170,15 @@
         "density": "836g/l",
         "processing_method": "日晒抛光",
         "harvest_season": "2024年",
-        "variety": "Robusta"
-      }
-    ]
-  },
-  {
-    "page": 4,
-    "coffee_beans": [
+        "variety": "阿拉比卡"
+      },
       {
         "code": "H-1",
         "name": "洪都拉斯 水洗 SHG EP （内袋）",
         "country": "洪都拉斯",
         "flavor_profile": "烤坚果，焦糖饼干，可可，巧克力，果酸。",
         "price_per_kg": 70.0,
-        "price_per_pkg": null,
+        "price_per_pkg": 63.0,
         "origin": "COPAN",
         "grade": "SHG EP",
         "humidity": "12.5%",
@@ -208,14 +203,19 @@
         "processing_method": "水洗处理",
         "harvest_season": "2024年",
         "variety": "Typica, Caturra"
-      },
+      }
+    ]
+  },
+  {
+    "page": 4,
+    "coffee_beans": [
       {
         "code": "P-5",
         "name": "巴布亚新几内亚 哈根山 AA",
         "country": "巴布亚新几内亚",
         "flavor_profile": "柑橘，杏仁，番茄，高甜度，口感厚实丰富。",
         "price_per_kg": 73.0,
-        "price_per_pkg": 63,
+        "price_per_pkg": 63.0,
         "origin": "Mount Hagen",
         "grade": "AA",
         "humidity": "10.6%",
@@ -229,7 +229,7 @@
         "code": "B-5",
         "name": "巴西 喜拉多 甜蜜日晒",
         "country": "巴西",
-        "flavor_profile": "坚果，焦糖及巧克力香气持久，高干净度，低酸度，醇厚，甜度高.",
+        "flavor_profile": "坚果，焦糖及巧克力香气持久，高干净度，低酸度，醇厚，甜度高。",
         "price_per_kg": 79.0,
         "price_per_pkg": 72.0,
         "origin": "Minas cerrado",
@@ -240,12 +240,7 @@
         "processing_method": "日晒处理",
         "harvest_season": "2024年",
         "variety": "黄卡杜艾，黄ICATU"
-      }
-    ]
-  },
-  {
-    "page": 5,
-    "coffee_beans": [
+      },
       {
         "code": "B-2",
         "name": "巴西 圣多斯",
@@ -266,7 +261,7 @@
         "code": "B-3",
         "name": "巴西 喜拉多 日晒",
         "country": "巴西",
-        "flavor_profile": "坚果，奶油，可可，巧克力，甜度高.",
+        "flavor_profile": "坚果，奶油，可可，巧克力，甜度高。",
         "price_per_kg": 82.0,
         "price_per_pkg": 72.0,
         "origin": "CERRADO",
@@ -308,8 +303,13 @@
         "density": "832g/l",
         "processing_method": "日晒处理",
         "harvest_season": "2024年",
-        "variety": "Catuai， Acaia"
-      },
+        "variety": "Catuai，Acaia"
+      }
+    ]
+  },
+  {
+    "page": 5,
+    "coffee_beans": [
       {
         "code": "CR-2",
         "name": "哥斯达黎加 塔拉珠 牧羊女庄园 SHB",
@@ -341,12 +341,7 @@
         "processing_method": "水洗处理",
         "harvest_season": "2024年",
         "variety": "Bourbon,Caturra,Catuai"
-      }
-    ]
-  },
-  {
-    "page": 6,
-    "coffee_beans": [
+      },
       {
         "code": "CR-3",
         "name": "哥斯达黎加 SHB EP",
@@ -378,102 +373,6 @@
         "processing_method": "水洗处理",
         "harvest_season": "2023年",
         "variety": "Bourbon,Caturra,Catuai"
-      },
-      {
-        "code": "K-1",
-        "name": "肯尼亚 麒麟雅加 AB FAQ",
-        "country": "肯尼亚",
-        "flavor_profile": "白色花香，小番茄，果汁般醇厚，甜感很好 。",
-        "price_per_kg": 74.0,
-        "price_per_pkg": 66.0,
-        "origin": "Kirinyaga",
-        "grade": "AB FAQ",
-        "humidity": "11.0%",
-        "altitude": "1500M",
-        "density": "878g/l",
-        "processing_method": "水洗处理",
-        "harvest_season": "2024年",
-        "variety": "SL34"
-      },
-      {
-        "code": "CB-1",
-        "name": "哥伦比亚 慧兰 苏帕摩",
-        "country": "哥伦比亚",
-        "flavor_profile": "坚果类、巧克力和焦糖的湿香，风味十足，口味香醇。",
-        "price_per_kg": 84.0,
-        "price_per_pkg": 75.0,
-        "origin": "HUILA",
-        "grade": "Supremo",
-        "humidity": "12.5%",
-        "altitude": "1300-1800M",
-        "density": "881g/l",
-        "processing_method": "水洗处理",
-        "harvest_season": "2024年",
-        "variety": "Caturra"
-      },
-      {
-        "code": "CB-2",
-        "name": "哥伦比亚 麦德林 苏帕摩",
-        "country": "哥伦比亚",
-        "flavor_profile": "甜橙，坚果、巧克力，酸甜平衡感好，香气足",
-        "price_per_kg": 84.0,
-        "price_per_pkg": 75.0,
-        "origin": "Medellin",
-        "grade": "Supremo",
-        "humidity": "12.4%",
-        "altitude": "1500M",
-        "density": "877g/l",
-        "processing_method": "水洗处理",
-        "harvest_season": "2024年",
-        "variety": "Caturra"
-      },
-      {
-        "code": "T-2",
-        "name": "坦桑尼亚 南部 姆贝亚 AA",
-        "country": "坦桑尼亚",
-        "flavor_profile": "柑橘，莓果，坚果，蜂蜜，口感柔和酸度丰富，香浓。",
-        "price_per_kg": 68.0,
-        "price_per_pkg": 59.0,
-        "origin": "Mbeya",
-        "grade": "AA",
-        "humidity": "12.6%",
-        "altitude": "1500M",
-        "density": "851g/l",
-        "processing_method": "水洗处理",
-        "harvest_season": "2024/2025年",
-        "variety": "Bourbon"
-      },
-      {
-        "code": "T-1",
-        "name": "坦桑尼亚 南部 姆贝亚 AAA",
-        "country": "坦桑尼亚",
-        "flavor_profile": "柑橘，莓果，坚果，蜂蜜，口感丰富，香浓，醇厚。",
-        "price_per_kg": 74.0,
-        "price_per_pkg": 65.0,
-        "origin": "Mbeya",
-        "grade": "AAA",
-        "humidity": "12.2%",
-        "altitude": "1500M",
-        "density": "825g/l",
-        "processing_method": "水洗处理",
-        "harvest_season": "2024/2025年",
-        "variety": "Bourbon"
-      },
-      {
-        "code": "T-3",
-        "name": "坦桑尼亚 南部 姆贝亚 A",
-        "country": "坦桑尼亚",
-        "flavor_profile": "柑橘，莓果，坚果，蜂蜜，口感柔和酸度丰富，风味干净。",
-        "price_per_kg": 66.0,
-        "price_per_pkg": 57.0,
-        "origin": "Mbeya",
-        "grade": "AB",
-        "humidity": "12.5%",
-        "altitude": "1200-1500M",
-        "density": "835g/l",
-        "processing_method": "水洗处理",
-        "harvest_season": "2024/2025年",
-        "variety": "Bourbon"
       }
     ]
   }

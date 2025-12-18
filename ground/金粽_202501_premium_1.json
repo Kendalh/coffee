@@ -6,7 +6,7 @@
         "code": "S63",
         "name": "云南孟连 双重厌氧发酵日晒 （银辉庄园）",
         "country": "中国",
-        "flavor_profile": "树莓， 朗姆酒， 酒心巧克力， 热带水果。",
+        "flavor_profile": "树莓，朗姆酒，酒心巧克力，热带水果",
         "price_per_kg": 72.0,
         "price_per_pkg": 65.0,
         "origin": "孟连 银辉庄园",
@@ -22,7 +22,7 @@
         "code": "S63-1",
         "name": "云南 普洱 厌氧发酵日晒 （次米竹庄园）",
         "country": "中国",
-        "flavor_profile": "樱桃， 树莓， 圣女果， 热带水果， 肉桂， 花香。",
+        "flavor_profile": "樱桃，树莓，圣女果，热带水果，肉桂，花香",
         "price_per_kg": 72.0,
         "price_per_pkg": 62.0,
         "origin": "云南普洱",
@@ -38,7 +38,7 @@
         "code": "S62",
         "name": "云南 孟连 腊福庄园 慢速日晒",
         "country": "中国",
-        "flavor_profile": "酒香， 黑巧克力， 黑醋栗， 热带水果 ， 红糖",
+        "flavor_profile": "酒香，黑巧克力，黑醋栗，热带水果，红糖",
         "price_per_kg": 60.0,
         "price_per_pkg": 50.0,
         "origin": "普洱 孟连",
@@ -54,7 +54,7 @@
         "code": "S63-1S",
         "name": "云南普洱 双重厌氧发酵日晒 （次米竹庄园）",
         "country": "中国",
-        "flavor_profile": "圣女果， 草莓， 热带水果， 花香， 橙子。",
+        "flavor_profile": "圣女果，草莓，热带水果，花香，橙子",
         "price_per_kg": 78.0,
         "price_per_pkg": 70.0,
         "origin": "云南西盟 次米竹",
@@ -65,17 +65,12 @@
         "processing_method": "双重厌氧发酵日晒22天 （16目以上）",
         "harvest_season": "2023年",
         "variety": "卡蒂姆Catimor"
-      }
-    ]
-  },
-  {
-    "page": 2,
-    "coffee_beans": [
+      },
       {
         "code": "S60",
         "name": "云南普洱 黄波旁 全日晒",
         "country": "中国",
-        "flavor_profile": "花香， 樱桃酒， 山核桃， 黑巧克力， 坚果， 热带水果酒。",
+        "flavor_profile": "花香，樱桃酒，山核桃，黑巧克力，坚果，热带水果酒",
         "price_per_kg": null,
         "price_per_pkg": null,
         "origin": "普洱炮掌山",
@@ -91,7 +86,7 @@
         "code": "S62-1",
         "name": "云南孟连 红酒日晒",
         "country": "中国",
-        "flavor_profile": "花香， 浆果， 红酒， 樱桃， 巧克力， 风味干净。",
+        "flavor_profile": "花香，浆果，红酒，樱桃，巧克力，风味干净",
         "price_per_kg": 56.0,
         "price_per_pkg": 48.0,
         "origin": "普洱孟连",
@@ -102,12 +97,17 @@
         "processing_method": "红酒日晒",
         "harvest_season": "2024年",
         "variety": "卡蒂姆Catimor"
-      },
+      }
+    ]
+  },
+  {
+    "page": 2,
+    "coffee_beans": [
       {
         "code": "S63-2S",
         "name": "云南普洱 红酒日晒 （澜沧）",
         "country": "中国",
-        "flavor_profile": "坚果 葡萄干 黑醋栗 酒心巧克力。",
+        "flavor_profile": "坚果，葡萄干，黑醋栗，酒心巧克力",
         "price_per_kg": 63.0,
         "price_per_pkg": 60.0,
         "origin": "澜沧产区",
@@ -123,9 +123,9 @@
         "code": "S63-7",
         "name": "云南厌氧预发酵日晒 （天宇庄园）",
         "country": "中国",
-        "flavor_profile": "花香、 甜橙和水蜜桃。",
-        "price_per_kg": null,
-        "price_per_pkg": null,
+        "flavor_profile": "花香、甜橙和水蜜桃",
+        "price_per_kg": 63.0,
+        "price_per_pkg": 55.0,
         "origin": "孟连天宇庄园",
         "grade": "AA",
         "humidity": "11.5%",
@@ -139,7 +139,7 @@
         "code": "S64",
         "name": "云南普洱厌氧预发酵水洗(天宇庄园)",
         "country": "中国",
-        "flavor_profile": "茉莉花香、 柑橘甜、 焦糖。",
+        "flavor_profile": "茉莉花香、柑橘甜、焦糖",
         "price_per_kg": 56.0,
         "price_per_pkg": 50.0,
         "origin": "孟连天宇庄园",
@@ -150,17 +150,12 @@
         "processing_method": "厌氧预发酵水洗",
         "harvest_season": "2022年",
         "variety": "卡蒂姆Catimor"
-      }
-    ]
-  },
-  {
-    "page": 3,
-    "coffee_beans": [
+      },
       {
         "code": "S65",
         "name": "云南 西双版纳 紫叶卡杜拉 水洗",
         "country": "中国",
-        "flavor_profile": "白色花香， 砂糖橘， 橙子， 苹果， 奶油， 车厘子， 绿茶， 口感很干净， 顺滑。",
+        "flavor_profile": "白色花香，砂糖橘，橙子，苹果，奶油，车厘子，绿茶，口感很干净，顺滑",
         "price_per_kg": 82.0,
         "price_per_pkg": 72.0,
         "origin": "西双版纳 勐海 西定",
@@ -176,7 +171,7 @@
         "code": "S66",
         "name": "云南 雪莉",
         "country": "中国",
-        "flavor_profile": "香草， 橡木， 威士忌， 奶油。",
+        "flavor_profile": "香草，橡木，威士忌，奶油",
         "price_per_kg": 115.0,
         "price_per_pkg": 105.0,
         "origin": "云南",
@@ -192,7 +187,7 @@
         "code": "S66-1",
         "name": "云南 茉莉",
         "country": "中国",
-        "flavor_profile": "茉莉， 白色花朵， 柑橘甜， 焦糖。",
+        "flavor_profile": "茉莉，白色花朵，柑橘甜，焦糖",
         "price_per_kg": 110.0,
         "price_per_pkg": 100.0,
         "origin": "云南",
@@ -208,7 +203,7 @@
         "code": "S66-2",
         "name": "云南 奶油草莓",
         "country": "中国",
-        "flavor_profile": "奶油， 草莓， 莓果， 香气浓郁。",
+        "flavor_profile": "奶油，草莓，莓果，香气浓郁",
         "price_per_kg": 115.0,
         "price_per_pkg": 105.0,
         "origin": "云南",
@@ -224,7 +219,7 @@
         "code": "S63-4",
         "name": "云南普洱 红酒日晒 （天皓）",
         "country": "中国",
-        "flavor_profile": "果酒、 菠萝蜜、 黑巧克力， 坚果。",
+        "flavor_profile": "果酒、菠萝蜜、黑巧克力，坚果",
         "price_per_kg": 76.0,
         "price_per_pkg": 70.0,
         "origin": "普洱澜沧天皓",
@@ -239,13 +234,13 @@
     ]
   },
   {
-    "page": 4,
+    "page": 3,
     "coffee_beans": [
       {
         "code": "S2-4",
         "name": "印尼 西爪哇 水洗 蜜果 （高甜）",
         "country": "印度尼西亚",
-        "flavor_profile": "花香， 黑莓， 绿茶， 热带水果， 坚果， 高甜度， 口感厚实， 平衡浓郁",
+        "flavor_profile": "花香，黑莓，绿茶，热带水果，坚果，高甜度，口感厚实，平衡浓郁",
         "price_per_kg": 104.0,
         "price_per_pkg": 95.0,
         "origin": "西爪哇WEST JAVA",
@@ -261,7 +256,7 @@
         "code": "S1-1",
         "name": "印度尼西亚 苏门答腊 多巴湖 黄金曼特宁19目",
         "country": "印度尼西亚",
-        "flavor_profile": "平衡， 醇厚度高， 果酸明亮， 坚果， 甜巧克力， 焦糖， 余韵悠长。",
+        "flavor_profile": "平衡，醇厚度高，果酸明亮，坚果，甜巧克力，焦糖，余韵悠长",
         "price_per_kg": 111.0,
         "price_per_pkg": 103.0,
         "origin": "苏门答腊/多巴湖",
@@ -277,7 +272,7 @@
         "code": "S1-3",
         "name": "印度尼西亚 苏门答腊 黄金曼特宁 PWN",
         "country": "印度尼西亚",
-        "flavor_profile": "口感醇厚， 巧克力， 焦糖甜香明显， 带有薄荷和果酸风味。",
+        "flavor_profile": "口感醇厚，巧克力，焦糖甜香明显，带有薄荷和果酸风味",
         "price_per_kg": 152.0,
         "price_per_pkg": 142.0,
         "origin": "苏门答腊",
@@ -293,7 +288,7 @@
         "code": "S3",
         "name": "印度尼西亚 亚齐 曼特宁龙果长豆 半水洗",
         "country": "印度尼西亚",
-        "flavor_profile": "花香， 奶油， 橙子， 蔗糖， 巧克力， 坚果， 柔顺。",
+        "flavor_profile": "花香，奶油，橙子，蔗糖，巧克力，坚果，柔顺",
         "price_per_kg": null,
         "price_per_pkg": null,
         "origin": "亚齐 塔瓦湖",
@@ -309,7 +304,7 @@
         "code": "S1-4",
         "name": "印度尼西亚 苏门答腊岛 亚齐 日晒曼特宁",
         "country": "印度尼西亚",
-        "flavor_profile": "哈密瓜， 凤梨， 莓果， 花香， 香料， 可可脂。",
+        "flavor_profile": "哈密瓜，凤梨，莓果，花香，香料，可可脂",
         "price_per_kg": 135.0,
         "price_per_pkg": 125.0,
         "origin": "苏门答腊岛.亚齐省",
@@ -320,17 +315,12 @@
         "processing_method": "日晒处理",
         "harvest_season": "2024年",
         "variety": "Catimor"
-      }
-    ]
-  },
-  {
-    "page": 5,
-    "coffee_beans": [
+      },
       {
         "code": "S2",
         "name": "印度尼西亚 中爪哇 日晒 黄钻",
         "country": "印度尼西亚",
-        "flavor_profile": "凤梨， 糖浆， 花香， 莓果， 高甜感。",
+        "flavor_profile": "凤梨，糖浆，花香，莓果，高甜感",
         "price_per_kg": 120.0,
         "price_per_pkg": 105.0,
         "origin": "中爪哇孙多罗火山区",
@@ -339,14 +329,14 @@
         "altitude": "1600-1800M",
         "density": "820g/l",
         "processing_method": "日晒处理",
-        "harvest_season": "2024呢喃",
-        "variety": "Catura, Catimor"
+        "harvest_season": "2024年",
+        "variety": "Catura,Catimor"
       },
       {
         "code": "S1-2",
         "name": "印度尼西亚 苏门答腊 黄金曼特宁20目",
         "country": "印度尼西亚",
-        "flavor_profile": "干净， 醇厚度高， 焦糖甜香明显， 果酸明亮。",
+        "flavor_profile": "干净，醇厚度高，焦糖甜香明显，果酸明亮",
         "price_per_kg": 130.0,
         "price_per_pkg": 120.0,
         "origin": "苏门答腊",
@@ -357,12 +347,17 @@
         "processing_method": "湿刨法",
         "harvest_season": "2024年",
         "variety": "Mandeling"
-      },
+      }
+    ]
+  },
+  {
+    "page": 4,
+    "coffee_beans": [
       {
         "code": "S1-2S",
         "name": "印度尼西亚 苏门答腊 黄金曼特宁21目",
         "country": "印度尼西亚",
-        "flavor_profile": "干净， 醇厚度高， 莓果， 花香， 香料， 黑巧克力， 高甜。",
+        "flavor_profile": "干净，醇厚度高，莓果，花香，香料，黑巧克力，高甜",
         "price_per_kg": 126.0,
         "price_per_pkg": 113.0,
         "origin": "苏门答腊",
@@ -378,7 +373,7 @@
         "code": "S5",
         "name": "巴西 圣路易斯 卡杜艾 厌氧日晒",
         "country": "巴西",
-        "flavor_profile": "柠檬、 李子、 布林、 红糖、 杏仁、 口感顺滑。",
+        "flavor_profile": "柠檬、李子、布林、红糖、杏仁、口感顺滑",
         "price_per_kg": 82.0,
         "price_per_pkg": 72.0,
         "origin": "Cerrado",
@@ -394,7 +389,7 @@
         "code": "S4-2",
         "name": "巴布亚新几内亚 西格里庄园 天堂鸟 AA",
         "country": "巴布亚新几内亚",
-        "flavor_profile": "焦糖甜明显， 水果软糖带着蜂蜜香气， 黑巧克力， 奶油， 松木， 香料。",
+        "flavor_profile": "焦糖甜明显，水果软糖带着蜂蜜香气，黑巧克力，奶油，松木，香料",
         "price_per_kg": 78.0,
         "price_per_pkg": 68.0,
         "origin": "西格里庄园/ Wahgi山谷",
@@ -410,7 +405,7 @@
         "code": "S5-2",
         "name": "巴西 摩吉安娜 翠鸟",
         "country": "巴西",
-        "flavor_profile": "坚果， 巧克力， 甘蔗， 口感柔滑细腻， 尾韵持久。",
+        "flavor_profile": "坚果，巧克力，甘蔗，口感柔滑细腻，尾韵持久",
         "price_per_kg": 83.0,
         "price_per_pkg": 75.0,
         "origin": "South Minas",
@@ -421,12 +416,7 @@
         "processing_method": "日晒处理",
         "harvest_season": "2024年",
         "variety": "Yellow bourbon"
-      }
-    ]
-  },
-  {
-    "page": 6,
-    "coffee_beans": [
+      },
       {
         "code": "S7",
         "name": "哥斯达黎加 怪兽庄园 厌氧日晒 （肉桂风味）",
@@ -441,13 +431,13 @@
         "density": "871g/l",
         "processing_method": "厌氧日晒",
         "harvest_season": "2022",
-        "variety": "caturra， catuai"
+        "variety": "caturra，catuai"
       },
       {
         "code": "S8",
         "name": "哥斯达黎加 托布希庄园 Villasarchi 日晒",
         "country": "哥斯达黎加",
-        "flavor_profile": "酒香， 芒果干， 深黑巧克力， 黑醋栗， 枫糖。",
+        "flavor_profile": "酒香，芒果干，深黑巧克力，黑醋栗，枫糖",
         "price_per_kg": 145.0,
         "price_per_pkg": 135.0,
         "origin": "TOBOSI 庄园",
@@ -458,17 +448,22 @@
         "processing_method": "日晒处理",
         "harvest_season": "2023年",
         "variety": "Villasarchi"
-      },
+      }
+    ]
+  },
+  {
+    "page": 5,
+    "coffee_beans": [
       {
         "code": "S6",
         "name": "哥斯达黎加 塔拉珠 圣迭戈处理厂 蜂鸟",
         "country": "哥斯达黎加",
-        "flavor_profile": "细腻干净， 莓果酸亮很甜， 焦糖巧克力， 花香， 油脂感优。",
+        "flavor_profile": "细腻干净，莓果酸亮很甜，焦糖巧克力，花香，油脂感优",
         "price_per_kg": 85.0,
         "price_per_pkg": 76.0,
         "origin": "塔拉珠",
         "grade": "SHB",
-        "humidity": "10.7%",
+        "humidity": "11.8%",
         "altitude": "1500-2000M",
         "density": "884g/l",
         "processing_method": "水洗处理",
@@ -479,7 +474,7 @@
         "code": "S6-1",
         "name": "哥斯达黎加 小蜜蜂 日晒",
         "country": "哥斯达黎加",
-        "flavor_profile": "葡萄干， 养乐多， 苹果， 康普茶。",
+        "flavor_profile": "葡萄干，养乐多，苹果，康普茶",
         "price_per_kg": 145.0,
         "price_per_pkg": 135.0,
         "origin": "SAN VITO / LA ABEJILLA FARM",
@@ -495,7 +490,7 @@
         "code": "S8-1",
         "name": "哥斯达黎加 科培庄园 Villasarchi 日晒",
         "country": "哥斯达黎加",
-        "flavor_profile": "葡萄干， 酒酿樱桃， 青苹果， 黑糖。",
+        "flavor_profile": "葡萄干，酒酿樱桃，青苹果，黑糖",
         "price_per_kg": 130.0,
         "price_per_pkg": 120.0,
         "origin": "Tarrazu/Hacienda Copey",
@@ -506,86 +501,6 @@
         "processing_method": "日晒处理",
         "harvest_season": "2024年",
         "variety": "Villasarchi"
-      },
-      {
-        "code": "S9",
-        "name": "哥斯达黎加 女神庄园 厌氧日晒 瑰夏",
-        "country": "哥斯达黎加",
-        "flavor_profile": "浓郁花香， 凤梨、 百香果、 水蜜桃， 超级热带水果的风味， 白葡萄果汁般的质地细腻精致， 丰富多变的滋味， 干净清新。",
-        "price_per_kg": 398.0,
-        "price_per_pkg": null,
-        "origin": "Dota/女神庄园",
-        "grade": "SHB",
-        "humidity": "10.5%",
-        "altitude": "1800M",
-        "density": "886g/l",
-        "processing_method": "厌氧日晒",
-        "harvest_season": "2022",
-        "variety": "Geisha"
-      },
-      {
-        "code": "S10",
-        "name": "哥斯达黎加 火凤凰庄园 蓝宝石 慢速日晒",
-        "country": "哥斯达黎加",
-        "flavor_profile": "无花果酱， 橘子， 黑糖， 乌龙茶。",
-        "price_per_kg": 130.0,
-        "price_per_pkg": 120.0,
-        "origin": "火凤凰庄园/中央山谷",
-        "grade": "SHB",
-        "humidity": "10.4%",
-        "altitude": "1600M",
-        "density": "912g/l",
-        "processing_method": "慢速日晒",
-        "harvest_season": "2023年",
-        "variety": "Caturra, Catuai"
-      },
-      {
-        "code": "S10-1",
-        "name": "哥斯达黎加 火凤凰庄园 黑玫瑰 厌氧日晒",
-        "country": "哥斯达黎加",
-        "flavor_profile": "蓝莓果酱， 葡萄， 凤梨干， 水梨。",
-        "price_per_kg": 135.0,
-        "price_per_pkg": 125.0,
-        "origin": "火凤凰庄园/中央山谷",
-        "grade": "SHB",
-        "humidity": "10.9%",
-        "altitude": "1600M",
-        "density": "905g/l",
-        "processing_method": "厌氧日晒处理",
-        "harvest_season": "2023年",
-        "variety": "Caturra"
-      },
-      {
-        "code": "S10-2",
-        "name": "哥斯达黎加 马丁帕迪拉处理厂 厌氧日晒",
-        "country": "哥斯达黎加",
-        "flavor_profile": "葡萄酒， 蓝莓， 芒果， 桃子酸奶， 杏桃， 果汁与复杂的酒感。",
-        "price_per_kg": 143.0,
-        "price_per_pkg": 130.0,
-        "origin": "塔拉珠",
-        "grade": "SHB",
-        "humidity": "11.9%",
-        "altitude": "1800M",
-        "density": "896g/l",
-        "processing_method": "厌氧日晒处理",
-        "harvest_season": "2022年",
-        "variety": "Villa Lobos薇拉罗伯斯"
-      },
-      {
-        "code": "S8-2",
-        "name": "哥斯达黎加 多塔 女神庄园 瑰夏 厌氧日晒 （2023产季）",
-        "country": "哥斯达黎加",
-        "flavor_profile": "香瓜、 蜂蜜、 蓝莓、 甜瓜、 奶油、 甜度高、 Body质感佳、 层次分明。",
-        "price_per_kg": 590.0,
-        "price_per_pkg": null,
-        "origin": "Dota/女神庄园",
-        "grade": "SHB",
-        "humidity": "11.0%",
-        "altitude": "1800M",
-        "density": "852g/l",
-        "processing_method": "厌氧日晒",
-        "harvest_season": "2023年",
-        "variety": "Geisha"
       }
     ]
   }
