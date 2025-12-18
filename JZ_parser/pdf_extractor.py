@@ -20,6 +20,9 @@ import argparse
 from pathlib import Path
 import pdfplumber
 
+# Constants
+COFFEE_BEAN_SEPARATOR = "=========="
+COFFEE_BEAN_PATTERN = r'(?m)^(\s*)([A-Z]+\d*-\d+[A-Z]*|[A-Z]\d+)'
 
 def find_section_boundaries(pdf_text: str) -> dict:
     """
@@ -107,13 +110,8 @@ def add_coffee_bean_separators(text: str) -> str:
     Returns:
         str: Text with separators added before coffee bean entries
     """
-    # Pattern to match coffee bean codes at the beginning of lines
-    # [A-Z]+\d*-\d+[A-Z]* - Matches patterns like S66-1, S1-1, S1-2S, etc.
-    # [A-Z]\d+ - Matches patterns like S65, S2, S6, etc.
-    pattern = r'(?m)^(\s*)([A-Z]+\d*-\d+[A-Z]*|[A-Z]\d+)'
-    
-    # Add separator before each match
-    result = re.sub(pattern, r'\1==========\n\1\2', text)
+    # Add separator before each match using the constant
+    result = re.sub(COFFEE_BEAN_PATTERN, r'\1' + COFFEE_BEAN_SEPARATOR + '\n\1\2', text)
     
     return result
 
@@ -128,9 +126,8 @@ def count_coffee_beans(text: str) -> int:
     Returns:
         int: Number of coffee bean entries
     """
-    # Pattern to match coffee bean codes
-    pattern = r'(?m)^(\s*)([A-Z]+\d*-\d+[A-Z]*|[A-Z]\d+)'
-    matches = re.findall(pattern, text)
+    # Use the constant pattern to match coffee bean codes
+    matches = re.findall(COFFEE_BEAN_PATTERN, text)
     return len(matches)
 
 
@@ -145,9 +142,8 @@ def split_text_by_coffee_beans(text: str, max_beans: int = 100) -> list:
     Returns:
         list: List of text chunks
     """
-    # Find all coffee bean positions
-    pattern = r'(?m)^(\s*)([A-Z]+\d*-\d+[A-Z]*|[A-Z]\d+)'
-    matches = list(re.finditer(pattern, text))
+    # Use the constant pattern to find all coffee bean positions
+    matches = list(re.finditer(COFFEE_BEAN_PATTERN, text))
     
     if len(matches) <= max_beans:
         return [text]
