@@ -150,13 +150,28 @@ def split_text_by_coffee_beans(text: str, max_beans: int = 100) -> list:
     
     chunks = []
     for i in range(0, len(matches), max_beans):
-        # Get the start position of this chunk
-        start_pos = matches[i].start()
+        # For the first chunk, start from the beginning of the text
+        # For subsequent chunks, start from the separator before the first bean in the chunk
+        if i == 0:
+            start_pos = 0
+        else:
+            # Find the separator before the first bean in this chunk
+            bean_start_pos = matches[i].start()
+            # Look backwards to find the separator before this bean
+            separator_pos = text.rfind(COFFEE_BEAN_SEPARATOR, 0, bean_start_pos)
+            if separator_pos != -1:
+                start_pos = separator_pos
+            else:
+                start_pos = bean_start_pos
         
         # Get the end position of this chunk (start of the bean after the limit)
         end_index = min(i + max_beans, len(matches))
         if end_index < len(matches):
             end_pos = matches[end_index].start()
+            # Look backwards to find the separator before the next bean
+            next_separator_pos = text.rfind(COFFEE_BEAN_SEPARATOR, 0, end_pos)
+            if next_separator_pos != -1:
+                end_pos = next_separator_pos
             chunk = text[start_pos:end_pos]
         else:
             # Last chunk goes to the end of the text
