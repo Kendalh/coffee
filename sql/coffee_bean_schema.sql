@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS coffee_bean (
     code TEXT,
     price_per_kg REAL,
     price_per_pkg REAL,
+    sold_out BOOLEAN DEFAULT FALSE,
     grade TEXT,
     altitude TEXT,
     density TEXT,

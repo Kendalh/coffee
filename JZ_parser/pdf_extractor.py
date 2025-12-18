@@ -132,13 +132,13 @@ def count_coffee_beans(text: str) -> int:
     return len(matches)
 
 
-def split_text_by_coffee_beans(text: str, max_beans: int = 100) -> list:
+def split_text_by_coffee_beans(text: str, max_beans: int) -> list: 
     """
     Split text into chunks with a maximum number of coffee beans per chunk.
     
     Args:
         text (str): Text to split
-        max_beans (int): Maximum number of coffee beans per chunk (default: 100)
+        max_beans (int): Maximum number of coffee beans per chunk 
         
     Returns:
         list: List of text chunks
@@ -168,13 +168,14 @@ def split_text_by_coffee_beans(text: str, max_beans: int = 100) -> list:
     return chunks
 
 
-def extract_sections_to_txt(input_pdf_path: str, output_dir: str):
+def extract_sections_to_txt(input_pdf_path: str, output_dir: str, max_beans_per_chunk: int):  # Added parameter
     """
     Extract sections from PDF and save as TXT files.
     
     Args:
         input_pdf_path (str): Path to input PDF file
         output_dir (str): Directory to save output TXT files
+        max_beans_per_chunk (int): Maximum number of beans per chunk 
     """
     try:
         # Extract filename components
@@ -221,9 +222,9 @@ def extract_sections_to_txt(input_pdf_path: str, output_dir: str):
             common_bean_count = count_coffee_beans(common_text)
             print(f"Common section has {common_bean_count} coffee beans")
             
-            # Split into chunks if more than 100 beans
-            if common_bean_count > 100:
-                common_chunks = split_text_by_coffee_beans(common_text, 100)
+            # Split into chunks if more than max_beans_per_chunk beans
+            if common_bean_count > max_beans_per_chunk:  # Changed from hardcoded 100
+                common_chunks = split_text_by_coffee_beans(common_text, max_beans_per_chunk)  # Use parameter
                 print(f"Splitting common section into {len(common_chunks)} chunks")
                 
                 for i, chunk in enumerate(common_chunks):
@@ -256,9 +257,9 @@ def extract_sections_to_txt(input_pdf_path: str, output_dir: str):
             premium_bean_count = count_coffee_beans(premium_text)
             print(f"Premium section has {premium_bean_count} coffee beans")
             
-            # Split into chunks if more than 100 beans
-            if premium_bean_count > 100:
-                premium_chunks = split_text_by_coffee_beans(premium_text, 100)
+            # Split into chunks if more than max_beans_per_chunk beans
+            if premium_bean_count > max_beans_per_chunk:  # Changed from hardcoded 100
+                premium_chunks = split_text_by_coffee_beans(premium_text, max_beans_per_chunk)  # Use parameter
                 print(f"Splitting premium section into {len(premium_chunks)} chunks")
                 
                 for i, chunk in enumerate(premium_chunks):
@@ -285,17 +286,18 @@ def extract_sections_to_txt(input_pdf_path: str, output_dir: str):
         print(f"Error processing {input_pdf_path}: {e}")
 
 
-def process_multiple_pdfs(input_paths: list, output_dir: str):
+def process_multiple_pdfs(input_paths: list, output_dir: str, max_beans_per_chunk: int):  # Added parameter
     """
     Process multiple PDF files.
     
     Args:
         input_paths (list): List of input PDF file paths
         output_dir (str): Directory to save output TXT files
+        max_beans_per_chunk (int): Maximum number of beans per chunk 
     """
     for pdf_path in input_paths:
         if os.path.isfile(pdf_path) and pdf_path.lower().endswith('.pdf'):
-            extract_sections_to_txt(pdf_path, output_dir)
+            extract_sections_to_txt(pdf_path, output_dir, max_beans_per_chunk)  # Pass parameter
         else:
             print(f"Skipping {pdf_path} (not a PDF file)")
 
@@ -324,10 +326,17 @@ Examples:
         help='Output directory for extracted TXT files (default: extracted_texts)'
     )
     
+    parser.add_argument(  # Added new argument
+        '--max-beans-per-chunk',
+        type=int,
+        default=30,
+        help='Maximum number of coffee beans per chunk file (default: 30)'
+    )
+    
     args = parser.parse_args()
     
-    # Process the PDF files
-    process_multiple_pdfs(args.input_files, args.output_dir)
+    # Process the PDF files with the max_beans_per_chunk parameter
+    process_multiple_pdfs(args.input_files, args.output_dir, args.max_beans_per_chunk)
 
 
 if __name__ == "__main__":

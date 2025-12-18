@@ -19,6 +19,7 @@ class CoffeeBeanDTO:
     code: str
     price_per_kg: Optional[float]
     price_per_pkg: Optional[float]
+    sold_out: bool
     grade: str
     altitude: str
     density: str
@@ -41,6 +42,7 @@ class CoffeeBeanDTO:
             code=data.get('code', ''),
             price_per_kg=float(data['price_per_kg']) if data.get('price_per_kg') and data['price_per_kg'] != '' else None,
             price_per_pkg=float(data['price_per_pkg']) if data.get('price_per_pkg') and data['price_per_pkg'] != '' else None,
+            sold_out=CoffeeBeanDTO._parse_boolean(data.get('sold_out', False)),
             grade=data.get('grade', ''),
             altitude=data.get('altitude', ''),
             density=data.get('density', ''),
@@ -51,6 +53,21 @@ class CoffeeBeanDTO:
             data_month=data.get('data_month', 0)
         )
 
+    @staticmethod
+    def _parse_boolean(value) -> bool:
+        """Parse various boolean representations to a proper boolean value."""
+        if isinstance(value, bool):
+            return value
+        if isinstance(value, str):
+            lower_value = value.lower()
+            if lower_value in ('true', '1', 'yes', 'on'):
+                return True
+            if lower_value in ('false', '0', 'no', 'off', ''):
+                return False
+        if isinstance(value, (int, float)):
+            return bool(value)
+        return False
+    
     def to_dict(self) -> Dict[str, Any]:
         """Convert the CoffeeBeanDTO to a dictionary."""
         return {
@@ -63,6 +80,7 @@ class CoffeeBeanDTO:
             'code': self.code,
             'price_per_kg': self.price_per_kg,
             'price_per_pkg': self.price_per_pkg,
+            'sold_out': self.sold_out,
             'grade': self.grade,
             'altitude': self.altitude,
             'density': self.density,

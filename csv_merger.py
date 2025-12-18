@@ -37,26 +37,19 @@ def extract_bean_type(filename: str) -> str:
         return 'unknown'
 
 
-def process_field_value(field_name: str, value: str) -> str:
+def process_field_value(field_name: str, value) -> str:
     """
     Process field values according to requirements:
-    - For name, flavor_profile, origin: replace commas with spaces
     - For harvest_season: extract only the year as YYYY format
+    - For other fields: convert to string without additional processing
     """
     if value is None or value == "None" or value == "":
         return ''
     
     value = str(value)
     
-    # Handle fields that need comma replacement
-    if field_name in ['name', 'flavor_profile', 'origin', 'variety']:
-        # Replace commas and Chinese punctuation with spaces
-        value = re.sub(r'[,，、.。]+', ' ', value)
-        # Clean up extra spaces
-        value = re.sub(r'\s+', ' ', value).strip()
-    
     # Handle harvest_season to extract year
-    elif field_name == 'harvest_season':
+    if field_name == 'harvest_season':
         # Extract 4-digit year
         year_match = re.search(r'(19|20)\d{2}', value)
         if year_match:
@@ -100,6 +93,10 @@ def process_json_file(file_path: str) -> List[Dict[str, Any]]:
                     
                     # Add the type field
                     processed_bean['type'] = bean_type
+                    
+                    # Ensure sold_out field is included (default to empty string if not present)
+                    if 'sold_out' not in processed_bean:
+                        processed_bean['sold_out'] = ''
                     
                     # Add country field
                     processed_bean['country'] = processed_bean.get('country', '')
@@ -152,8 +149,8 @@ def merge_json_to_csv(file_pattern: str, output_csv: str = None):
     
     # Define the standard field order for the CSV
     fieldnames = [
-        'name', 'type', 'country', 'flavor_profile', 'origin', 'harvest_season',
-        'code', 'price_per_kg', 'price_per_pkg', 'grade', 'altitude', 
+        'code','name', 'type', 'country', 'flavor_profile', 'origin', 'harvest_season',
+        'price_per_kg', 'price_per_pkg', 'sold_out', 'grade', 'altitude', 
         'density', 'processing_method', 'variety'
     ]
     

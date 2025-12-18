@@ -19,4 +19,4 @@ INNER JOIN latest l
     ON cb.provider = l.provider
     AND cb.data_year = l.data_year
     AND cb.data_month = l.data_month
-WHERE cb.country = '印度尼西亚';
+WHERE cb.country = '中国' AND cb.type = 'premium';
