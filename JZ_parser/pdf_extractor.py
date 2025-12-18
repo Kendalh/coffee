@@ -22,7 +22,7 @@ import pdfplumber
 
 # Constants
 COFFEE_BEAN_SEPARATOR = "=========="
-COFFEE_BEAN_PATTERN = r'(?m)^(\s*)([A-Z]+\d*-\d+[A-Z]*|[A-Z]\d+)'
+COFFEE_BEAN_PATTERN = r'(?m)^([A-Z]+\d*-\d+[A-Z]*|[A-Z]\d+)'
 
 def find_section_boundaries(pdf_text: str) -> dict:
     """
@@ -111,7 +111,8 @@ def add_coffee_bean_separators(text: str) -> str:
         str: Text with separators added before coffee bean entries
     """
     # Add separator before each match using the constant
-    result = re.sub(COFFEE_BEAN_PATTERN, r'\1' + COFFEE_BEAN_SEPARATOR + '\n\1\2', text)
+    # The pattern matches at the beginning of lines without capturing leading whitespace
+    result = re.sub(COFFEE_BEAN_PATTERN, COFFEE_BEAN_SEPARATOR + '\n\\1', text)
     
     return result
 
@@ -142,42 +143,27 @@ def split_text_by_coffee_beans(text: str, max_beans: int = 100) -> list:
     Returns:
         list: List of text chunks
     """
-    # Use the constant pattern to find all coffee bean positions
-    matches = list(re.finditer(COFFEE_BEAN_PATTERN, text))
+    # First, ensure the text has separators added
+    if not text.startswith(COFFEE_BEAN_SEPARATOR):
+        text = COFFEE_BEAN_SEPARATOR + '\n' + text
     
-    if len(matches) <= max_beans:
-        return [text]
+    # Split the text by separators to get individual bean entries
+    parts = text.split(COFFEE_BEAN_SEPARATOR + '\n')
     
+    # The first part is empty (because we split at the beginning), so remove it
+    if parts and parts[0] == '':
+        parts = parts[1:]
+    
+    if len(parts) <= max_beans:
+        # If we have fewer beans than the max, return the whole text with proper formatting
+        return [COFFEE_BEAN_SEPARATOR + '\n' + (COFFEE_BEAN_SEPARATOR + '\n').join(parts)]
+    
+    # Split into chunks
     chunks = []
-    for i in range(0, len(matches), max_beans):
-        # For the first chunk, start from the beginning of the text
-        # For subsequent chunks, start from the separator before the first bean in the chunk
-        if i == 0:
-            start_pos = 0
-        else:
-            # Find the separator before the first bean in this chunk
-            bean_start_pos = matches[i].start()
-            # Look backwards to find the separator before this bean
-            separator_pos = text.rfind(COFFEE_BEAN_SEPARATOR, 0, bean_start_pos)
-            if separator_pos != -1:
-                start_pos = separator_pos
-            else:
-                start_pos = bean_start_pos
-        
-        # Get the end position of this chunk (start of the bean after the limit)
-        end_index = min(i + max_beans, len(matches))
-        if end_index < len(matches):
-            end_pos = matches[end_index].start()
-            # Look backwards to find the separator before the next bean
-            next_separator_pos = text.rfind(COFFEE_BEAN_SEPARATOR, 0, end_pos)
-            if next_separator_pos != -1:
-                end_pos = next_separator_pos
-            chunk = text[start_pos:end_pos]
-        else:
-            # Last chunk goes to the end of the text
-            chunk = text[start_pos:]
-        
-        chunks.append(chunk)
+    for i in range(0, len(parts), max_beans):
+        chunk_parts = parts[i:i + max_beans]
+        chunk_text = COFFEE_BEAN_SEPARATOR + '\n' + (COFFEE_BEAN_SEPARATOR + '\n').join(chunk_parts)
+        chunks.append(chunk_text)
     
     return chunks
 
