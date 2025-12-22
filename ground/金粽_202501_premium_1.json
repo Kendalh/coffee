@@ -16,7 +16,8 @@
         "density": "868g/l",
         "processing_method": "双重厌氧发酵日晒",
         "harvest_season": "2024年",
-        "variety": "卡蒂姆Catimor"
+        "variety": "卡蒂姆Catimor",
+        "flavor_category": "酒香发酵型"
       },
       {
         "code": "S63-1",
@@ -32,7 +33,8 @@
         "density": "846g/l",
         "processing_method": "厌氧发酵日晒 （16目以上）",
         "harvest_season": "2023年",
-        "variety": "卡蒂姆Catimor"
+        "variety": "卡蒂姆Catimor",
+        "flavor_category": "果汁感热带水果型"
       },
       {
         "code": "S62",
@@ -48,7 +50,8 @@
         "density": "866g/l",
         "processing_method": "慢速日晒",
         "harvest_season": "2024年",
-        "variety": "卡蒂姆Catimor"
+        "variety": "卡蒂姆Catimor",
+        "flavor_category": "酒香发酵型"
       },
       {
         "code": "S63-1S",
@@ -64,7 +67,8 @@
         "density": "871g/l",
         "processing_method": "双重厌氧发酵日晒22天 （16目以上）",
         "harvest_season": "2023年",
-        "variety": "卡蒂姆Catimor"
+        "variety": "卡蒂姆Catimor",
+        "flavor_category": "果汁感热带水果型"
       },
       {
         "code": "S60",
@@ -80,7 +84,8 @@
         "density": "867g/l",
         "processing_method": "日晒处理",
         "harvest_season": "2024年",
-        "variety": "黄波旁"
+        "variety": "黄波旁",
+        "flavor_category": "酒香发酵型"
       },
       {
         "code": "S62-1",
@@ -96,7 +101,8 @@
         "density": "815g/l",
         "processing_method": "红酒日晒",
         "harvest_season": "2024年",
-        "variety": "卡蒂姆Catimor"
+        "variety": "卡蒂姆Catimor",
+        "flavor_category": "均衡圆润型"
       }
     ]
   },
@@ -117,7 +123,8 @@
         "density": "885g/l",
         "processing_method": "红酒日晒",
         "harvest_season": "2023年",
-        "variety": "卡蒂姆Catimor"
+        "variety": "卡蒂姆Catimor",
+        "flavor_category": "酒香发酵型"
       },
       {
         "code": "S63-7",
@@ -133,7 +140,8 @@
         "density": "825g/l",
         "processing_method": "厌氧预发酵日晒处理",
         "harvest_season": "2023年",
-        "variety": "卡蒂姆Catimor"
+        "variety": "卡蒂姆Catimor",
+        "flavor_category": "花香茶感型"
       },
       {
         "code": "S64",
@@ -149,7 +157,8 @@
         "density": "870g/l",
         "processing_method": "厌氧预发酵水洗",
         "harvest_season": "2022年",
-        "variety": "卡蒂姆Catimor"
+        "variety": "卡蒂姆Catimor",
+        "flavor_category": "花香茶感型"
       },
       {
         "code": "S65",
@@ -165,7 +174,8 @@
         "density": "860g/l",
         "processing_method": "K72水洗",
         "harvest_season": "2024年",
-        "variety": "紫叶卡杜拉 （德热296）"
+        "variety": "紫叶卡杜拉 （德热296）",
+        "flavor_category": "花香茶感型"
       },
       {
         "code": "S66",
@@ -181,7 +191,8 @@
         "density": "853g/l",
         "processing_method": "酵母浸渍处理法",
         "harvest_season": "2024年",
-        "variety": "卡蒂姆"
+        "variety": "卡蒂姆",
+        "flavor_category": "酒香发酵型"
       },
       {
         "code": "S66-1",
@@ -197,7 +208,8 @@
         "density": "847g/l",
         "processing_method": "酵母浸渍处理法",
         "harvest_season": "2024年",
-        "variety": "卡蒂姆"
+        "variety": "卡蒂姆",
+        "flavor_category": "花香茶感型"
       },
       {
         "code": "S66-2",
@@ -213,7 +225,8 @@
         "density": "828g/l",
         "processing_method": "酵母浸渍处理法",
         "harvest_season": "2024年",
-        "variety": "卡蒂姆"
+        "variety": "卡蒂姆",
+        "flavor_category": "明亮果酸型"
       },
       {
         "code": "S63-4",
@@ -229,7 +242,8 @@
         "density": "893g/l",
         "processing_method": "红酒日晒",
         "harvest_season": "2023年",
-        "variety": "卡蒂姆Catimor"
+        "variety": "卡蒂姆Catimor",
+        "flavor_category": "酒香发酵型"
       }
     ]
   },
@@ -250,7 +264,8 @@
         "density": "882g/l",
         "processing_method": "水洗处理",
         "harvest_season": "2024年",
-        "variety": "铁皮卡Typica"
+        "variety": "铁皮卡Typica",
+        "flavor_category": "均衡圆润型"
       },
       {
         "code": "S1-1",
@@ -266,7 +281,8 @@
         "density": "837g/l",
         "processing_method": "湿刨法",
         "harvest_season": "2024年",
-        "variety": "Mandeling"
+        "variety": "Mandeling",
+        "flavor_category": "均衡圆润型"
       },
       {
         "code": "S1-3",
@@ -282,7 +298,8 @@
         "density": "858g/l",
         "processing_method": "湿刨法",
         "harvest_season": "2024年",
-        "variety": "铁皮卡"
+        "variety": "铁皮卡",
+        "flavor_category": "焦糖甜感型"
       },
       {
         "code": "S3",
@@ -298,7 +315,8 @@
         "density": "877g/l",
         "processing_method": "半水洗",
         "harvest_season": "2024年",
-        "variety": "Abbysinia"
+        "variety": "Abbysinia",
+        "flavor_category": "均衡圆润型"
       },
       {
         "code": "S1-4",
@@ -314,7 +332,8 @@
         "density": "887g/l",
         "processing_method": "日晒处理",
         "harvest_season": "2024年",
-        "variety": "Catimor"
+        "variety": "Catimor",
+        "flavor_category": "果汁感热带水果型"
       },
       {
         "code": "S2",
@@ -330,7 +349,8 @@
         "density": "820g/l",
         "processing_method": "日晒处理",
         "harvest_season": "2024年",
-        "variety": "Catura,Catimor"
+        "variety": "Catura,Catimor",
+        "flavor_category": "果汁感热带水果型"
       },
       {
         "code": "S1-2",
@@ -346,7 +366,8 @@
         "density": "830g/l",
         "processing_method": "湿刨法",
         "harvest_season": "2024年",
-        "variety": "Mandeling"
+        "variety": "Mandeling",
+        "flavor_category": "焦糖甜感型"
       }
     ]
   },
@@ -367,7 +388,8 @@
         "density": "853g/l",
         "processing_method": "湿刨法",
         "harvest_season": "2024年",
-        "variety": "Mandeling"
+        "variety": "Mandeling",
+        "flavor_category": "均衡圆润型"
       },
       {
         "code": "S5",
@@ -383,7 +405,8 @@
         "density": "823g/l",
         "processing_method": "厌氧日晒处理",
         "harvest_season": "2023/2024年",
-        "variety": "Yellow Catuai"
+        "variety": "Yellow Catuai",
+        "flavor_category": "明亮果酸型"
       },
       {
         "code": "S4-2",
@@ -399,7 +422,8 @@
         "density": "845g/l",
         "processing_method": "水洗处理",
         "harvest_season": "2024年",
-        "variety": "Typica"
+        "variety": "Typica",
+        "flavor_category": "焦糖甜感型"
       },
       {
         "code": "S5-2",
@@ -415,7 +439,8 @@
         "density": "847g/l",
         "processing_method": "日晒处理",
         "harvest_season": "2024年",
-        "variety": "Yellow bourbon"
+        "variety": "Yellow bourbon",
+        "flavor_category": "巧克力坚果调型"
       },
       {
         "code": "S7",
@@ -431,7 +456,8 @@
         "density": "871g/l",
         "processing_method": "厌氧日晒",
         "harvest_season": "2022",
-        "variety": "caturra，catuai"
+        "variety": "caturra，catuai",
+        "flavor_category": "明亮果酸型"
       },
       {
         "code": "S8",
@@ -447,7 +473,8 @@
         "density": "875g/l",
         "processing_method": "日晒处理",
         "harvest_season": "2023年",
-        "variety": "Villasarchi"
+        "variety": "Villasarchi",
+        "flavor_category": "酒香发酵型"
       }
     ]
   },
@@ -468,7 +495,8 @@
         "density": "884g/l",
         "processing_method": "水洗处理",
         "harvest_season": "2024年",
-        "variety": "Caturra,Caruai"
+        "variety": "Caturra,Caruai",
+        "flavor_category": "均衡圆润型"
       },
       {
         "code": "S6-1",
@@ -484,7 +512,8 @@
         "density": "903g/l",
         "processing_method": "日晒处理",
         "harvest_season": "2023年",
-        "variety": "Venecia"
+        "variety": "Venecia",
+        "flavor_category": "酒香发酵型"
       },
       {
         "code": "S8-1",
@@ -500,7 +529,8 @@
         "density": "860g/l",
         "processing_method": "日晒处理",
         "harvest_season": "2024年",
-        "variety": "Villasarchi"
+        "variety": "Villasarchi",
+        "flavor_category": "酒香发酵型"
       }
     ]
   }

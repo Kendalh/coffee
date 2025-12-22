@@ -72,3 +72,67 @@ Need a couple changes
  a) drop all the tables
  b) re-create all 
  c) accept a one or more .csv data file and populate (insert override) data
+
+
+ ----------------
+ Write a program in the @flavor_categorization.py to use LLM (please take reference to the @text_llm_parser.py code) (non-streaming node) to categorize the flavor_profiles into flavor_category. 
+ 1) The program should take a list of JSON file fomatted like @金粽_202512_common_1.json
+ 2) Take all the 'flavor_profile' & 'code' into a shorter json array
+ 3) Call LLM to categorize the flavor_profile into a simplifed flavor_category. A sample prompt will look like this. Please optimize the prompt as needed. 
+ ## prompt
+ Please map the detailed coffee bean flavor description (As a JSON array in the <flavor_profiles> section), into a simplifed flavor category. There are 8 categories with brief description as provided in the <flavor_category> section. 
+ 
+ You should retur a JSON array like follows: 
+ [
+    {code: "xxx", flavor_profile: "orignal text", flavor_category: "mapped category from 8"},
+    ...
+ ]
+
+<flavor_profiles> 
+
+```json
+[
+  {code: "S12", flavor_profile: "花香， 浆果， 红酒， 樱桃， 巧克力， 风味干净。"},
+  {code: "E1", flavor_profile: "红酒， 莓果， 热带水果， 焦糖， 巧克力。"},
+  ....
+]
+```
+</flavor_profiles> 
+
+<flavor_category>
+[
+  {
+    "flavor_category": "明亮果酸型",
+    "description": "柠檬、青苹果、葡萄柚、莓果、白葡萄酒感"
+  },
+  {
+    "flavor_category": "花香茶感型",
+    "description": "茉莉、洋甘菊、乌龙茶、蜂蜜、柑橘皮"
+  },
+  {
+    "flavor_category": "果汁感热带水果型",
+    "description": "百香果、芒果、菠萝、荔枝、发酵酒香"
+  },
+  {
+    "flavor_category": "均衡圆润型",
+    "description": "杏仁、焦糖、蜂蜜、轻微柑橘酸、顺滑口感"
+  },
+  {
+    "flavor_category": "巧克力坚果调型",
+    "description": "黑巧克力、榛子、杏仁酱、烤面包、奶油"
+  },
+  {
+    "flavor_category": "焦糖甜感型",
+    "description": "焦糖、太妃糖、枫糖、烤瓜子"
+  },
+  {
+    "flavor_category": "酒香发酵型",
+    "description": "红酒、威士忌桶、酵素感、蓝莓酱"
+  },
+  {
+    "flavor_category": "烟熏木质型",
+    "description": "雪松、烟草、香料、泥土、药草"
+  }
+]
+</flavor_category>
+4) Modify the original input JSON file, and attach a new field "flavor_cateogy" for each coffee bean as parsed the by the LLM output.

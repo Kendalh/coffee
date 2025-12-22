@@ -1,0 +1,34 @@
+[
+  {
+    "flavor_category": "明亮果酸型",
+    "description": "柠檬、青苹果、葡萄柚、莓果、白葡萄酒感"
+  },
+  {
+    "flavor_category": "花香茶感型",
+    "description": "茉莉、洋甘菊、乌龙茶、蜂蜜、柑橘皮"
+  },
+  {
+    "flavor_category": "果汁感热带水果型",
+    "description": "百香果、芒果、菠萝、荔枝、发酵酒香"
+  },
+  {
+    "flavor_category": "均衡圆润型",
+    "description": "杏仁、焦糖、蜂蜜、轻微柑橘酸、顺滑口感"
+  },
+  {
+    "flavor_category": "巧克力坚果调型",
+    "description": "黑巧克力、榛子、杏仁酱、烤面包、奶油"
+  },
+  {
+    "flavor_category": "焦糖甜感型",
+    "description": "焦糖、太妃糖、枫糖、烤瓜子"
+  },
+  {
+    "flavor_category": "酒香发酵型",
+    "description": "红酒、威士忌桶、酵素感、蓝莓酱"
+  },
+  {
+    "flavor_category": "烟熏木质型",
+    "description": "雪松、烟草、香料、泥土、药草"
+  }
+]

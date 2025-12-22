@@ -16,7 +16,8 @@
         "density": "860g/l",
         "processing_method": "湿刨法",
         "harvest_season": "2025年",
-        "variety": "Mandeling"
+        "variety": "Mandeling",
+        "flavor_category": "烟熏木质型"
       },
       {
         "code": "I-3",
@@ -32,7 +33,8 @@
         "density": "873g/l",
         "processing_method": "湿刨法",
         "harvest_season": "2025年",
-        "variety": "Mandeling"
+        "variety": "Mandeling",
+        "flavor_category": "焦糖甜感型"
       },
       {
         "code": "I-4",
@@ -48,7 +50,8 @@
         "density": "849g/l",
         "processing_method": "湿刨法",
         "harvest_season": "2025年",
-        "variety": "铁皮卡"
+        "variety": "铁皮卡",
+        "flavor_category": "花香茶感型"
       },
       {
         "code": "I-5",
@@ -64,7 +67,8 @@
         "density": "803g/l",
         "processing_method": "日晒抛光",
         "harvest_season": "2025年",
-        "variety": "Robusta"
+        "variety": "Robusta",
+        "flavor_category": "巧克力坚果调型"
       }
     ]
   },
@@ -85,7 +89,8 @@
         "density": "864g/l",
         "processing_method": "日晒抛光",
         "harvest_season": "2025年",
-        "variety": "Robusta"
+        "variety": "Robusta",
+        "flavor_category": "未分类"
       },
       {
         "code": "U-1",
@@ -101,7 +106,8 @@
         "density": "813g/l",
         "processing_method": "日晒抛光",
         "harvest_season": "2025年",
-        "variety": "Robusta"
+        "variety": "Robusta",
+        "flavor_category": "未分类"
       },
       {
         "code": "U-2",
@@ -117,7 +123,8 @@
         "density": "860g/l",
         "processing_method": "水洗处理",
         "harvest_season": "2025年",
-        "variety": "阿拉比卡"
+        "variety": "阿拉比卡",
+        "flavor_category": "巧克力坚果调型"
       },
       {
         "code": "LA-1",
@@ -133,7 +140,8 @@
         "density": "830g/l",
         "processing_method": "水洗处理",
         "harvest_season": "2024/2025年",
-        "variety": "卡蒂姆"
+        "variety": "卡蒂姆",
+        "flavor_category": "均衡圆润型"
       }
     ]
   },
@@ -154,7 +162,8 @@
         "density": "836g/l",
         "processing_method": "日晒抛光",
         "harvest_season": "2025年",
-        "variety": "Robusta"
+        "variety": "Robusta",
+        "flavor_category": "未分类"
       },
       {
         "code": "U-1A",
@@ -170,7 +179,8 @@
         "density": "813g/l",
         "processing_method": "日晒抛光",
         "harvest_season": "2025年",
-        "variety": "Robusta"
+        "variety": "Robusta",
+        "flavor_category": "巧克力坚果调型"
       },
       {
         "code": "C-1",
@@ -186,7 +196,8 @@
         "density": "850g/l",
         "processing_method": "水洗处理",
         "harvest_season": "2025年",
-        "variety": "卡蒂姆"
+        "variety": "卡蒂姆",
+        "flavor_category": "花香茶感型"
       },
       {
         "code": "P-4",
@@ -202,7 +213,8 @@
         "density": "838g/l",
         "processing_method": "水洗处理",
         "harvest_season": "2025年",
-        "variety": "Typica, Caturra"
+        "variety": "Typica, Caturra",
+        "flavor_category": "均衡圆润型"
       },
       {
         "code": "P-5",
@@ -218,7 +230,8 @@
         "density": "850g/l",
         "processing_method": "水洗处理",
         "harvest_season": "2025年",
-        "variety": "Typica, Caturra"
+        "variety": "Typica, Caturra",
+        "flavor_category": "均衡圆润型"
       }
     ]
   },
@@ -239,7 +252,8 @@
         "density": "846g/l",
         "processing_method": "水洗处理",
         "harvest_season": "2025年",
-        "variety": "卡蒂姆"
+        "variety": "卡蒂姆",
+        "flavor_category": "明亮果酸型"
       },
       {
         "code": "P-2",
@@ -255,7 +269,8 @@
         "density": "841g/l",
         "processing_method": "水洗处理",
         "harvest_season": "2025年",
-        "variety": "Typica，Bournbon"
+        "variety": "Typica，Bournbon",
+        "flavor_category": "花香茶感型"
       },
       {
         "code": "P-3",
@@ -271,7 +286,8 @@
         "density": "832g/l",
         "processing_method": "水洗处理",
         "harvest_season": "2025年",
-        "variety": "Typica，Bournbon"
+        "variety": "Typica，Bournbon",
+        "flavor_category": "焦糖甜感型"
       },
       {
         "code": "B-5",
@@ -287,7 +303,8 @@
         "density": "850g/l",
         "processing_method": "日晒处理",
         "harvest_season": "2025年",
-        "variety": "黄卡杜艾，黄ICATU"
+        "variety": "黄卡杜艾，黄ICATU",
+        "flavor_category": "巧克力坚果调型"
       },
       {
         "code": "B-2",
@@ -303,7 +320,8 @@
         "density": "852g/l",
         "processing_method": "日晒处理",
         "harvest_season": "2025年",
-        "variety": "Catuai, Acaia"
+        "variety": "Catuai, Acaia",
+        "flavor_category": "巧克力坚果调型"
       },
       {
         "code": "B-3",
@@ -319,7 +337,8 @@
         "density": "870g/l",
         "processing_method": "日晒处理",
         "harvest_season": "2025年",
-        "variety": "bourbon"
+        "variety": "bourbon",
+        "flavor_category": "巧克力坚果调型"
       }
     ]
   },
@@ -340,7 +359,8 @@
         "density": "856g/l",
         "processing_method": "水洗处理",
         "harvest_season": "2023年",
-        "variety": "Typica"
+        "variety": "Typica",
+        "flavor_category": "均衡圆润型"
       },
       {
         "code": "B-1",
@@ -356,7 +376,8 @@
         "density": "832g/l",
         "processing_method": "日晒处理",
         "harvest_season": "2025年",
-        "variety": "Catuai，Acaia"
+        "variety": "Catuai，Acaia",
+        "flavor_category": "巧克力坚果调型"
       },
       {
         "code": "H-1",
@@ -372,7 +393,8 @@
         "density": "853g/l",
         "processing_method": "水洗处理",
         "harvest_season": "2025年",
-        "variety": "Bourbon, Catuai, Caturra"
+        "variety": "Bourbon, Catuai, Caturra",
+        "flavor_category": "明亮果酸型"
       },
       {
         "code": "CR-1",
@@ -388,7 +410,8 @@
         "density": "853g/l",
         "processing_method": "水洗处理",
         "harvest_season": "2025年",
-        "variety": "Caturra,Caruai"
+        "variety": "Caturra,Caruai",
+        "flavor_category": "花香茶感型"
       },
       {
         "code": "CB-1",
@@ -404,7 +427,8 @@
         "density": "881g/l",
         "processing_method": "水洗处理",
         "harvest_season": "2025年",
-        "variety": "Caturra"
+        "variety": "Caturra",
+        "flavor_category": "巧克力坚果调型"
       },
       {
         "code": "CB-2",
@@ -420,7 +444,8 @@
         "density": "877g/l",
         "processing_method": "水洗处理",
         "harvest_season": "2025年",
-        "variety": "Caturra"
+        "variety": "Caturra",
+        "flavor_category": "均衡圆润型"
       },
       {
         "code": "CB-3",
@@ -436,7 +461,8 @@
         "density": "833g/l",
         "processing_method": "水洗处理",
         "harvest_season": "2025年",
-        "variety": "Caturra"
+        "variety": "Caturra",
+        "flavor_category": "均衡圆润型"
       },
       {
         "code": "G-1",
@@ -452,7 +478,8 @@
         "density": "885g/l",
         "processing_method": "水洗处理",
         "harvest_season": "2024年",
-        "variety": "Bourbon,Caturra,Catuai"
+        "variety": "Bourbon,Caturra,Catuai",
+        "flavor_category": "巧克力坚果调型"
       }
     ]
   }

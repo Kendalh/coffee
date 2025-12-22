@@ -9,7 +9,7 @@ import os
 from coffee_service import CoffeeQueryService
 
 # Import the coffee filters
-from coffee_filters import CountryFilter, ProviderFilter, TypeFilter, get_all_countries, get_all_providers, get_all_types
+from coffee_filters import CountryFilter, ProviderFilter, TypeFilter, get_all_countries, get_all_providers, get_all_types, get_all_flavor_categories
 
 # Configure logging
 logging.basicConfig(
@@ -142,15 +142,34 @@ def get_coffee_beans():
         page_size = int(request.args.get('page_size', 10))
         country = request.args.get('country')
         bean_type = request.args.get('type')
+        flavor_category = request.args.get('flavor_category')
         
         # Validate page size
         if page_size not in [10, 50, 100]:
             page_size = 10
             
-        result = coffee_service.get_latest_coffee_beans(
-            provider='金粽',
-            country=country,
-            bean_type=bean_type,
+        # Build SQL query with optional filters
+        conditions = ["provider = ?"]
+        params = ['金粽']
+        
+        if country:
+            conditions.append("country = ?")
+            params.append(country)
+            
+        if bean_type:
+            conditions.append("type = ?")
+            params.append(bean_type)
+            
+        if flavor_category:
+            conditions.append("flavor_category = ?")
+            params.append(flavor_category)
+            
+        where_clause = "WHERE " + " AND ".join(conditions)
+        sql_query = f"SELECT * FROM coffee_bean {where_clause} ORDER BY name"
+        
+        result = coffee_service.query_coffee_beans(
+            sql_query=sql_query,
+            params=tuple(params),
             page=page, 
             page_size=page_size
         )
@@ -231,6 +250,18 @@ def get_providers():
         providers = get_all_providers()
         # Return as a sorted list
         return jsonify(sorted(list(providers)))
+    except Exception as e:
+        logger.error("Error processing request: %s", str(e))
+        return jsonify({"error": "Internal server error"}), 500
+
+
+@app.route('/api/filters/flavor-categories', methods=['GET'])
+def get_flavor_categories():
+    """Get all available flavor categories for filtering."""
+    try:
+        flavor_categories = get_all_flavor_categories()
+        # Return as a sorted list
+        return jsonify(sorted(list(flavor_categories)))
     except Exception as e:
         logger.error("Error processing request: %s", str(e))
         return jsonify({"error": "Internal server error"}), 500

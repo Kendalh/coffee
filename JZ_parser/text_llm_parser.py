@@ -39,7 +39,9 @@ Parsing Requirements:
    - flavor_profile: Flavor characteristics (followed by 风味：)
    - price_per_kg: Price per kilogram (number)
    - price_per_pkg: Package price (number)
-   - origin: Origin/region information (possible fields are 产地、庄园、产区)
+   - origin: Origin/region information (possible fields are 产地、产区)
+   - plot: More detailed plot information (field to parse is 地块), leave to None if not present
+   - estate: Estate information (field to parse is 庄园), leave to None is not present
    - grade: Grade of the coffee bean
    - humidity: Moisture content (with %)
    - altitude: Growing altitude
@@ -48,7 +50,6 @@ Parsing Requirements:
    - harvest_season: Harvest season/year
    - variety: Coffee variety
    - sold_out: If there is "售罄", mark this field as True, otherwise False
-
 Extra Process: 
    - Some of the name attributes will have double countires like "哥伦比亚 哥伦比亚 慧兰 苏帕摩", "卢旺达 卢旺达 波旁种 水洗 15目+". In such cases, dedup the county name in the name. 
 
@@ -73,6 +74,8 @@ Example Output Format:
         "price_per_kg": 84.0,
         "price_per_pkg": 74.0,
         "origin": "Sumatra",
+        "plot": "A地块",
+        "estate": "曼特宁庄园",
         "grade": "G1",
         "humidity": "13.5%",
         "altitude": "1300-1600M",
@@ -85,7 +88,6 @@ Example Output Format:
     ]
   }
 ]
-
 Begin parsing the following text:
 """
         return prompt
@@ -370,6 +372,8 @@ Begin parsing the following text:
                     "price_per_kg": price,
                     "price_per_pkg": bean.get("price_per_pkg"),  # Keep original type
                     "origin": str(bean.get("origin", "")),
+                    "plot": str(bean.get("plot", "")),
+                    "estate": str(bean.get("estate", "")),
                     "grade": str(bean.get("grade", "")),
                     "humidity": str(bean.get("humidity", "")),
                     "altitude": str(bean.get("altitude", "")),

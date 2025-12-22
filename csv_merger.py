@@ -63,6 +63,12 @@ def process_field_value(field_name: str, value) -> str:
     return value
 
 
+def is_flavor_file(filename: str) -> bool:
+    """
+    Check if the file is a flavor file (contains only code, flavor_profile, and flavor_category)
+    """
+    return '_flavor' in filename
+
 def process_json_file(file_path: str) -> List[Dict[str, Any]]:
     """
     Process a JSON file and extract coffee beans data
@@ -73,39 +79,55 @@ def process_json_file(file_path: str) -> List[Dict[str, Any]]:
         with open(file_path, 'r', encoding='utf-8') as f:
             data = json.load(f)
         
-        # Extract bean type from filename
-        bean_type = extract_bean_type(os.path.basename(file_path))
+        filename = os.path.basename(file_path)
         
-        # Process each page in the JSON
-        for page in data:
-            if 'coffee_beans' in page:
-                for bean in page['coffee_beans']:
-                    # Skip if name is empty/None
-                    if not bean.get('name') or bean.get('name') == "None" or bean.get('name') == "":
-                        continue
-                    
-                    # Create a new record with processed fields
-                    processed_bean = {}
-                    
-                    # Copy all existing fields and process them
-                    for key, value in bean.items():
-                        processed_bean[key] = process_field_value(key, value)
-                    
-                    # Add the type field
-                    processed_bean['type'] = bean_type
-                    
-                    # Ensure sold_out field is included (default to empty string if not present)
-                    if 'sold_out' not in processed_bean:
-                        processed_bean['sold_out'] = ''
-                    
-                    # Add country field
-                    processed_bean['country'] = processed_bean.get('country', '')
-                    
-                    # Extract year from harvest_season
-                    if 'harvest_season' in processed_bean:
-                        processed_bean['harvest_season'] = process_field_value('harvest_season', processed_bean['harvest_season'])
-                    
-                    beans_data.append(processed_bean)
+        # Handle flavor files differently
+        if is_flavor_file(filename):
+            # Flavor files contain arrays of flavor data directly
+            for bean in data:
+                # Create a new record with flavor fields
+                processed_bean = {
+                    'code': bean.get('code', ''),
+                    'flavor_profile': bean.get('flavor_profile', ''),
+                    'flavor_category': bean.get('flavor_category', ''),
+                    'type': extract_bean_type(filename)
+                }
+                beans_data.append(processed_bean)
+        else:
+            # Regular files have the page structure
+            # Extract bean type from filename
+            bean_type = extract_bean_type(filename)
+            
+            # Process each page in the JSON
+            for page in data:
+                if 'coffee_beans' in page:
+                    for bean in page['coffee_beans']:
+                        # Skip if name is empty/None
+                        if not bean.get('name') or bean.get('name') == "None" or bean.get('name') == "":
+                            continue
+                        
+                        # Create a new record with processed fields
+                        processed_bean = {}
+                        
+                        # Copy all existing fields and process them
+                        for key, value in bean.items():
+                            processed_bean[key] = process_field_value(key, value)
+                        
+                        # Add the type field
+                        processed_bean['type'] = bean_type
+                        
+                        # Ensure sold_out field is included (default to empty string if not present)
+                        if 'sold_out' not in processed_bean:
+                            processed_bean['sold_out'] = ''
+                        
+                        # Add country field
+                        processed_bean['country'] = processed_bean.get('country', '')
+                        
+                        # Extract year from harvest_season
+                        if 'harvest_season' in processed_bean:
+                            processed_bean['harvest_season'] = process_field_value('harvest_season', processed_bean['harvest_season'])
+                        
+                        beans_data.append(processed_bean)
     except Exception as e:
         print(f"Error processing file {file_path}: {e}")
     
@@ -114,7 +136,7 @@ def process_json_file(file_path: str) -> List[Dict[str, Any]]:
 
 def merge_json_to_csv(file_pattern: str, output_csv: str = None):
     """
-    Merge JSON files matching the pattern into a CSV file
+    Merge JSON files matching the pattern into a CSV file, keyed by code
     """
     # Find all files matching the pattern
     files = list(Path('.').glob(file_pattern))
@@ -135,13 +157,28 @@ def merge_json_to_csv(file_pattern: str, output_csv: str = None):
         else:
             output_csv = "merged_coffee_beans.csv"
     
-    # Collect all beans data
-    all_beans = []
+    # Collect all beans data and merge by code
+    beans_by_code = {}
+    
     for file_path in files:
         print(f"Processing file: {file_path}")
         beans = process_json_file(str(file_path))
         print(f"  Extracted {len(beans)} beans from {file_path}")
-        all_beans.extend(beans)
+        
+        # Merge beans by code
+        for bean in beans:
+            code = bean.get('code', '')
+            if code:
+                if code not in beans_by_code:
+                    beans_by_code[code] = bean
+                else:
+                    # Merge the bean data, preferring non-empty values
+                    for key, value in bean.items():
+                        if value or not beans_by_code[code].get(key):
+                            beans_by_code[code][key] = value
+    
+    # Convert to list
+    all_beans = list(beans_by_code.values())
     
     if not all_beans:
         print("No coffee beans data found in the files.")
@@ -149,9 +186,9 @@ def merge_json_to_csv(file_pattern: str, output_csv: str = None):
     
     # Define the standard field order for the CSV
     fieldnames = [
-        'code','name', 'type', 'country', 'flavor_profile', 'origin', 'harvest_season',
-        'price_per_kg', 'price_per_pkg', 'sold_out', 'grade', 'altitude', 
-        'density', 'processing_method', 'variety'
+        'code', 'name', 'type', 'country', 'flavor_profile', 'flavor_category', 'origin', 
+        'harvest_season', 'price_per_kg', 'price_per_pkg', 'sold_out', 'grade', 'altitude', 
+        'density', 'processing_method', 'variety', 'humidity', 'plot', 'estate'
     ]
     
     # Write to CSV with explicit quoting to handle special characters
@@ -166,7 +203,7 @@ def merge_json_to_csv(file_pattern: str, output_csv: str = None):
                 row[field] = bean.get(field, '')
             writer.writerow(row)
     
-    print(f"Successfully merged {len(all_beans)} coffee beans into {output_csv}")
+    print(f"Successfully merged {len(all_beans)} unique coffee beans into {output_csv}")
 
 
 def main():

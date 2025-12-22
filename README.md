@@ -181,3 +181,19 @@ handlers=[
 ```
 
 The application will display "Hello Python Web" when you visit the root endpoint and will log detailed information about each request and response.
+
+# The pipline (example) to extract and populate one PDF 
+1. Pre-process PDF and chunking
+python3 JZ_parser/pdf_extractor.py raw_data/金粽_202505.pdf -o iron_data
+
+2. Parse the core coffee bean features using DeepSeek
+python3 JZ_parser/text_llm_parser.py iron_data/金粽_202505_* -o silver_data
+
+3. Categorize the flavor_profiles into a simplifed flavor_category 
+python3 JZ_parser/flavor_categorization.py silver_data/金粽_202505_* -o silver_data
+
+4. Merge or the JSONs (in silver_data) into a full CSV 
+python3 csv_merger.py "silver_data/金粽_202505_*"  -o golden_data/金粽_202505.csv
+
+5. Populate the CSV data file into SQLite
+python3 sqlite_populator.py golden_data/金粽_202505.csv
