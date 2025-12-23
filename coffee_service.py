@@ -205,6 +205,49 @@ class CoffeeQueryService:
             
         finally:
             conn.close()
+    
+    def get_price_trends(self, name: str) -> List[Dict[str, Any]]:
+        """
+        Get price trends for a specific coffee bean across all time periods.
+        
+        Args:
+            name (str): Coffee bean name
+            
+        Returns:
+            List[Dict]: List of price data sorted by time in descending order
+        """
+        sql_query = """
+        SELECT 
+            name,
+            data_year,
+            data_month,
+            price_per_kg
+        FROM coffee_bean 
+        WHERE name = ?
+        ORDER BY data_year DESC, data_month DESC
+        """
+        
+        conn = self._get_db_connection()
+        conn.row_factory = self._dict_factory
+        
+        try:
+            cursor = conn.cursor()
+            cursor.execute(sql_query, (name,))
+            rows = cursor.fetchall()
+            
+            # Convert to list of dictionaries
+            return [
+                {
+                    'name': row['name'],
+                    'data_year': row['data_year'],
+                    'data_month': row['data_month'],
+                    'price_per_kg': row['price_per_kg']
+                }
+                for row in rows
+            ]
+            
+        finally:
+            conn.close()
 
     def get_latest_coffee_beans(self, provider: Optional[str] = None, country: Optional[str] = None, 
                                bean_type: Optional[str] = None, page: int = 1, 

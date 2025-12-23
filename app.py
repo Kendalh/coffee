@@ -230,6 +230,21 @@ def get_coffee_bean(name, year, month):
         return jsonify({"error": "Internal server error"}), 500
 
 
+@app.route('/api/coffee-beans/<name>/price-trends', methods=['GET'])
+def get_coffee_bean_price_trends(name):
+    """Get price trends for a specific coffee bean across all time periods."""
+    try:
+        price_trends = coffee_service.get_price_trends(name)
+        if price_trends:
+            return jsonify(price_trends)
+        else:
+            return jsonify([])  # Return empty array if no data found
+            
+    except Exception as e:
+        logger.error("Error processing request: %s", str(e))
+        return jsonify({"error": "Internal server error"}), 500
+
+
 # Filter endpoints
 @app.route('/api/filters/countries', methods=['GET'])
 def get_countries():
