@@ -4,6 +4,8 @@ import time
 from typing import Dict, List, Any, Optional
 from openai import OpenAI
 from sql_query_tool import SQLQueryTool
+import threading
+from queue import Queue
 
 
 class DeepSeekReActAgent:
@@ -49,7 +51,20 @@ class DeepSeekReActAgent:
 2. **行动（Acting）**：如果需要数据库查询，调用 sql_query_tool
 3. **观察（Observation）**：处理查询返回的结果
 4. **重复**：基于观察继续思考，直到可以给出最终答案
-**最终答案**：[清晰完整的答案]
+**最终答案**：[清晰完整的答案] 
+
+## 结构化最终答案 
+当获取最终答案后，把答案结构化为如下JSON格式：（当有咖啡豆推荐时，将咖啡豆的基本信息抽取到coffee_bean数组中）
+{
+    "answer": ""  
+    "coffee_beans": [
+        {
+            "name": "",
+            "data_year": "",
+            "data_month": ""
+        }
+    ]
+}
 
 ## 可用工具：
 1. sql_query_tool - 执行SQL查询并返回结果
@@ -131,6 +146,7 @@ flavor_category中有如下8中风味类型：
 5. 在查询时注意使用正确的表名和字段名
 6. 不要试图将用户的问题翻译为英语（如国家名）
 7. **行动**后，不要自己编造**观察**内容，系统会提供真实的工具执行结果作为**观察**
+8. 最终答案输出必须是结构化JSON格式，不要使用其他格式
 """
     
     def parse_react_response(self, response_text: str) -> Dict[str, str]:
@@ -231,7 +247,7 @@ flavor_category中有如下8中风味类型：
                 "row_count": 0
             }
     
-    def solve(self, question: str, max_steps: int = 7) -> str:
+    def solve(self, question: str, max_steps: int = 8) -> str:
         """
         使用ReAct模式解决问题
         
@@ -374,7 +390,28 @@ flavor_category中有如下8中风味类型：
                     # 检查是否有最终答案
                     if parsed["final_answer"]:
                         print(f"\n✓ 找到最终答案!")
-                        return parsed["final_answer"]
+                        # Clean up the final answer by removing markdown code blocks if present
+                        final_answer = parsed["final_answer"].strip()
+                        
+                        # Remove markdown JSON block markers if present
+                        if final_answer.startswith('```json'):
+                            final_answer = final_answer[7:]  # Remove '```json'
+                        if final_answer.startswith('```'):
+                            final_answer = final_answer[3:]   # Remove '```'
+                        if final_answer.endswith('```'):
+                            final_answer = final_answer[:-3]  # Remove trailing '```'
+                        
+                        # Remove any leading/trailing whitespace
+                        final_answer = final_answer.strip()
+                        
+                        # Try to parse the final answer as JSON to return a proper object
+                        try:
+                            # Try to parse the final answer as JSON
+                            parsed_result = json.loads(final_answer)
+                            return parsed_result
+                        except (json.JSONDecodeError, TypeError):
+                            # If it's not a JSON string, return the cleaned answer
+                            return final_answer
                     
                     # 检查是否需要行动
                     if parsed["action"] and "sql_query_tool" in parsed["action"]:
@@ -455,6 +492,20 @@ flavor_category中有如下8中风味类型：
                 break
             except Exception as e:
                 print(f"\n[错误] {e}")
+
+    def ask_question_threaded(self, question: str, result_queue: Queue):
+        """
+        在线程中处理问题并返回结果到队列
+        
+        Args:
+            question: 用户问题
+            result_queue: 用于返回结果的队列
+        """
+        try:
+            result = self.solve(question)
+            result_queue.put({"success": True, "result": result})
+        except Exception as e:
+            result_queue.put({"success": False, "error": str(e)})
 
 
 # 使用示例

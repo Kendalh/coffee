@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify, render_template
+import json
 import logging
 from datetime import datetime
 import csv
@@ -10,6 +11,23 @@ from coffee_service import CoffeeQueryService
 
 # Import the coffee filters
 from coffee_filters import CountryFilter, ProviderFilter, TypeFilter, get_all_countries, get_all_providers, get_all_types, get_all_flavor_categories
+
+# Import the QA agent
+import sys
+import os
+import importlib.util
+import threading
+from queue import Queue
+
+# Add qa-agent directory to path to allow imports
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'qa-agent'))
+
+# Load reactAgent module from qa-agent directory
+react_agent_path = os.path.join(os.path.dirname(__file__), 'qa-agent', 'reactAgent.py')
+spec = importlib.util.spec_from_file_location("reactAgent", react_agent_path)
+react_agent_module = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(react_agent_module)
+DeepSeekReActAgent = react_agent_module.DeepSeekReActAgent
 
 # Configure logging
 logging.basicConfig(
@@ -25,6 +43,14 @@ app = Flask(__name__, template_folder='templates')
 
 # Initialize the coffee query service
 coffee_service = CoffeeQueryService()
+
+# Initialize the QA agent
+try:
+    # You should replace this with your actual API key or load from environment variable
+    QA_AGENT = DeepSeekReActAgent(api_key="sk-de6d5dde9d384de294c14637d1018de2")
+except Exception as e:
+    logger.error(f"Failed to initialize QA agent: {e}")
+    QA_AGENT = None
 
 def load_random_coffee():
     """Load a random coffee from the CSV file"""
@@ -215,7 +241,7 @@ def search_coffee_beans():
         logger.error("Error processing request: %s", str(e))
         return jsonify({"error": "Internal server error"}), 500
 
-@app.route('/api/coffee-beans/<name>/<int:year>/<int:month>', methods=['GET'])
+@app.route('/api/coffee-beans/<name>/<int:year>-<int:month>', methods=['GET'])
 def get_coffee_bean(name, year, month):
     """Get a specific coffee bean by name and date."""
     try:
@@ -279,6 +305,75 @@ def get_flavor_categories():
         return jsonify(sorted(list(flavor_categories)))
     except Exception as e:
         logger.error("Error processing request: %s", str(e))
+        return jsonify({"error": "Internal server error"}), 500
+
+
+@app.route('/api/qa', methods=['GET'])
+def qa_agent():
+    """Ask a question to the QA agent and get coffee bean recommendations."""
+    try:
+        question = request.args.get('q')
+        if not question:
+            return jsonify({"error": "Question is required as a query parameter"}), 400
+            
+        # Check if QA agent is available
+        if QA_AGENT is None:
+            return jsonify({"error": "QA agent is not available"}), 500
+        
+        # Use a queue to handle the potentially long-running operation
+        result_queue = Queue()
+        thread = threading.Thread(target=QA_AGENT.ask_question_threaded, args=(question, result_queue))
+        thread.start()
+        
+        # Wait for the thread to complete (with a reasonable timeout)
+        thread.join(timeout=120)  # 2 minute timeout
+        
+        if thread.is_alive():
+            # Thread is still running after timeout
+            return jsonify({"error": "Request timed out"}), 408
+        
+        # Get the result from the queue
+        if not result_queue.empty():
+            result = result_queue.get()
+            if result["success"]:
+                # The result might be a JSON string that needs to be parsed
+                result_text = result["result"]
+                
+                # Clean up the result by removing markdown code blocks if present
+                if isinstance(result_text, str):
+                    cleaned_result = result_text.strip()
+                    
+                    # Remove markdown JSON block markers if present
+                    if cleaned_result.startswith('```json'):
+                        cleaned_result = cleaned_result[7:]  # Remove '```json'
+                    if cleaned_result.startswith('```'):
+                        cleaned_result = cleaned_result[3:]   # Remove '```'
+                    if cleaned_result.endswith('```'):
+                        cleaned_result = cleaned_result[:-3]  # Remove trailing '```'
+                    
+                    # Remove any leading/trailing whitespace
+                    cleaned_result = cleaned_result.strip()
+                else:
+                    cleaned_result = result_text
+                
+                try:
+                    # Try to parse the result as JSON to handle nested JSON strings
+                    parsed_result = json.loads(cleaned_result)
+                    # If parsed_result is a dict (JSON object), return it directly
+                    if isinstance(parsed_result, dict):
+                        return jsonify(parsed_result)
+                    else:
+                        # If it's not a dict, wrap it in an answer field
+                        return jsonify({"answer": parsed_result})
+                except (json.JSONDecodeError, TypeError):
+                    # If it's not a JSON string, return as is
+                    return jsonify({"answer": cleaned_result})
+            else:
+                return jsonify({"error": result["error"]}), 500
+        else:
+            return jsonify({"error": "No result returned from QA agent"}), 500
+    except Exception as e:
+        logger.error("Error processing QA agent request: %s", str(e))
         return jsonify({"error": "Internal server error"}), 500
 
 
